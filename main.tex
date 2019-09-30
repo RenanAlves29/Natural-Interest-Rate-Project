@@ -1,0 +1,705 @@
+\documentclass[11pt,oneside,a4paper]{article}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage[english,brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{setspace}
+\usepackage{natbib}
+%\usepackage{uarial}
+\usepackage{rotating,booktabs}
+\usepackage{inslrmin, pxfonts} 
+\usepackage{caption}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[none]{hyphenat}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{calrsfs}
+
+
+
+\title{Natural Interest Rate}
+\author{Renan Alves}
+
+\newcommand{\eqname}[1]{\tag*{#1}}% Tag equation with name
+
+\begin{document}
+
+\onehalfspacing
+\maketitle
+\section{\citet{LW:2003}:Measuring the Natural Rate of Interest }
+A taxa natural de juros - a taxa de juros real de curto prazo consistente com produto, igualando sua taxa natural e inflação constante.
+
+A taxa de juros real natural ou de "equilíbrio" fornece uma referência para medir a postura da política monetária, com a política expansionista (contracionista) se a taxa de juros de curto prazo estiver abaixo (acima) da taxa natural.
+
+Abordamos essa questão calculando conjuntamente as taxas naturais de juros e produto e o crescimento da tendência nos últimos 40 anos de dados dos EUA, usando o filtro de Kalman. A taxa de juros natural mostra uma variação significativa nos últimos quarenta anos nos Estados Unidos, com a variação na taxa de crescimento tendencial sendo um importante determinante das mudanças na taxa natural, conforme previsto pela teoria. Esses resultados são robustos a mudanças na especificação. No entanto, as estimativas de uma taxa de juros natural variável no tempo, como aquelas das taxas naturais de desemprego e produção, são muito imprecisas e estão sujeitas a considerável mensuração em tempo real.
+
+A taxa natural de juros está intimamente relacionada ao nível da taxa natural de produção, ela própria uma variável não observada. Da FOC do consumidor tem-se: 
+\begin{equation}
+    r = \dfrac{1}{\sigma} g_c + \theta
+\end{equation}
+$r$ é a taxa real de juros e $\sigma$ é a IES e $g_c$ a taxa de crescimento do consumo. Mudanças na taxa de crescimento tendencial nos Estados Unidos, sugerindo uma fonte de movimentos persistentes na taxa de juros natural; mudanças nas preferências e na política fiscal provavelmente contribuem também para a variação no tempo da taxa natural. Lei de movimento para taxa natural de juros, $r^{*}$:
+\begin{equation}
+    r_t^{*} = cg_t + z_t
+\end{equation}
+$g_t$ é a tendência de crescimento da taxa natural do produto e $z_t$ captura outros determinantes.
+
+Os principais determinantes da taxa natural de juros não são observados, aplicamos o filtro de Kalman para estimar conjuntamente as taxas naturais de juros, produção e tendência de crescimento. A identificação econométrica da taxa natural de juros é obtida especificando-se uma equação IS de forma reduzida, em que o hiato do produto (o desvio percentual do PIB real da taxa natural de produção) é determinado por suas próprias defasagens, uma média móvel da defasagem da real-funds-rate gap (a diferença entre a taxa fed fund ex ante e $r^{*}$):
+
+\begin{equation} \label{Eq_medida1}
+    \tilde{y}_t = a_{y,1}\tilde{y}_{t-1} + a_{y,2}\tilde{y}_{t-2} + \dfrac{a_r}{2}\sum_{j=1}^{2} (r_{t-j} - r_{t-j}^{*}) + \varepsilon_{1,t}
+\end{equation}
+
+Supõe-se que a taxa de inflação seja determinada por suas próprias defasagens, o defasagem do produto, duas variáveis que medem a inflação dos preços relativos (choques de núcleo - importação excluindo petróleo, computadores e semicondutores) e inflação defasada do petróleo.
+
+\begin{equation} \label{Eq_medida2}
+    \pi_t = B_{\pi}(L)\pi_{t-1} + b_y \tilde{y}_{t-1} + b_i(\pi_t^{I} - \pi_t ) + b_{o}(\pi_{t-1}^{o} - \pi_t) + \varepsilon_{2,t}
+\end{equation}
+
+As eqs. (\ref{Eq_medida1}) e (\ref{Eq_medida2}) são as equações de medida da versão básica do modelo de espaço de estado. Há um versão amplificada que inclui horas trabalhadas:
+
+\begin{equation}
+    \tilde{h}_t = f_1\tilde{y}_t + f_2\tilde{h}_{t-1} + f_3\tilde{h}_{t-1} + \varepsilon_{6,t}
+\end{equation}
+
+$\tilde{h}_t$ é o desvio percentual entre as horas trabalhadas e a tendência log linear $h_t^{*}$.
+
+Equações de Transição do modelo de espaço de estado:
+
+\begin{equation}
+    z_t = D_z(L)z_{t-1} + \varepsilon_{3,t}
+\end{equation}
+
+Permite choques para a taxa natural do produto e para a tendência do produto.
+
+\begin{eqnarray}
+    y_t^{*} = y_{t-1}^{*} + g_{t-1} + \varepsilon_{4,t} \\
+    g_t^{*} = g_{t-1}^{*} + \varepsilon_{5,t}
+\end{eqnarray}
+
+Estima o modelo via máxima verossimilhança. Em duas etapas. Na primeira etapa, aplique o filtro de Kalman para estimar a taxa natural do produto, omitindo o termo do hiato da taxa real da equação (\ref{Eq_medida1}) e assumindo que a taxa de crescimento de tendência g é constante.
+%
+%
+\section{\citet{HLW:2017}: Measuring the natural rate of interest: International trends and determinants}
+
+Neste artigo, estendemos essa análise para outras economias avançadas. Estimamos uma versão do modelo de \citet{LW:2003} da taxa natural de juros, originalmente desenvolvida para a economia americana, usando dados de quatro economias: Estados Unidos, Canadá, Área do Euro e Reino Unido. Esse modelo aplica o filtro de Kalman a dados sobre o PIB real, a inflação e a taxa de juros de curto prazo para extrair componentes altamente persistentes da taxa natural de produção, sua taxa de crescimento tendencial e a taxa natural de juros.
+
+Nossa análise produz quatro resultados principais. Primeiro, encontramos evidências de variação no tempo na taxa natural de juros em todas as quatro economias. Em segundo lugar, há uma tendência de queda nas taxas de juros naturais estimadas: No final de nossa amostra, as taxas naturais estimadas de juros nas quatro economias caíram para níveis historicamente baixos. Isso é em grande parte explicado em nosso modelo por um declínio significativo nas taxas de crescimento de tendências estimadas encontradas em todas as quatro economias, mas outros fatores altamente persistentes também parecem estar em ação. Não encontramos evidências de que as taxas naturais estejam voltando recentemente. Terceiro, embora a estimativa seja feita em uma base de economia por economia, há um substancial aumento nas estimativas das taxas naturais de juros e tendência de crescimento do PIB entre as economias. Isso sugere um papel importante para os chamados fatores globais que influenciam as taxas naturais. Finalmente, as estimativas da taxa natural de juros são altamente imprecisas, reforçando uma descoberta chave do artigo original de \citet{LW:2003}. De fato, as estimativas da taxa natural para as outras três economias são mais imprecisas do que as dos Estados Unidos.
+
+Seguimos Wicksell ao definir a taxa natural como a taxa real de juros consistente com a inflação estável e a produção sendo a sua taxa natural. Nós construímos sobre a estrutura New Keynesian de uma relação de curva de Phillips e uma equação IS intertemporal para descrever a dinâmica que governa o hiato do produto e a inflação como uma função do hiato de taxa real. No entanto, relaxamos as suposições sobre o estado estacionário que a maioria dos modelos DSGE usa para derivar aproximações log-lineares da dinâmica da inflação e do hiato do produto. Os parâmetros-chave que estão sendo tratados como fixados na literatura, como a taxa de crescimento da tecnologia e a taxa de preferência temporal do agregado familiar representativo, podem, de fato, estar sujeitos a flutuações altamente persistentes, mas difíceis de detectar. Enquanto na literatura do DSGE a taxa natural de juros é uma combinação linear estacionária de choques transitórios às preferências e à tecnologia, em nossa estrutura explicitamente permitimos que a taxa natural seja afetada por processos não estacionários de baixa frequência.
+
+Um agregado familiar representativo com preferências do CES, esse modelo implica que a taxa natural de juros varia ao longo do tempo em resposta a mudanças nas preferências e na taxa de crescimento do produto. Em um estado estacionário não estocástico, a maximização da utilidade intertemporal dos domicílios gera a relação entre a taxa de juros real de um período $r^{*}$ em estado estacionário e o crescimento em estado estacionário:
+\begin{equation}
+    r^{*} = \dfrac{1}{\sigma} g_c + \theta
+\end{equation}
+
+As equações que usamos para estimar a taxa de juros natural relaxam as restrições impostas pelo modelo new keynesiano ao longo de duas dimensões. Primeiro, trabalhamos com equações de forma reduzida que são um tanto agnósticas sobre as relações precisas de lead-lag entre as variáveis endógenas. Isso reduz o risco de que nossas estimativas da taxa natural sejam indevidamente afetadas por estimativas de parâmetros estruturais com base no hiato do produto potencialmente impreciso e na dinâmica da inflação. Em segundo lugar, permitimos a presença de choques que afetam o hiato do produto e a inflação, mas não a taxa natural de juros, que definimos como um conceito de baixa frequência.
+
+\begin{eqnarray}
+    \tilde{y}_t = a_{y,1}\tilde{y}_{t-1} + a_{y,2}\tilde{y}_{t-2} + \dfrac{a_r}{2} \sum_{j=1}^{2} (r_{t-j} - r_{t-j}^{*}) + \varepsilon_{\tilde{y},t} \\
+    \pi_t = b_{\pi} \pi_{t-1} + (1 - b_{\pi}) \pi_{t-2,4} + b_y \tilde{y}_{t-1} + \varepsilon_{\pi,t}
+\end{eqnarray}
+
+$\pi_{t-2,4} $ é a média entre a segunda e a quarta defasagem da inflação do consumidor. A presença de termos estocásticos $\varepsilon_{\tilde{y},t} $ e $\varepsilon_{\pi,t} $ capturam movimentos transitórios sobre o hiato do produto e inflação, enquanto que movimentos em $r^{*}$ refletem mudanças persistentes na relação entre a taxa real de curto prazo e o hiato do produto.
+
+Com base no vínculo teórico entre a taxa natural de juros e o crescimento do produto (ou consumo) observado acima, supomos que a lei do movimento para a taxa natural de juros é dada por:
+
+\begin{equation}
+    r_t^{*} = g_t + z_t
+\end{equation}
+
+Especificando o log do produto potencial como um randow walk com um drift estocástico $g$ que ele próprio segue um randow walk:
+
+\begin{eqnarray}
+    y^{*}_t = y^{*}_{t-1} + g_{t-1} + \varepsilon_{y^{*},t} \\
+    g_t = g_{t-1} + \varepsilon_{g,t}
+\end{eqnarray}
+
+Estimativas do hiato do produto para as quatro economias. Os movimentos descendentes nas estimadas do hiato do produto geralmente estão de acordo com o momento das recessões. Todas as quatro economias experimentam hiatos do produto negativos após a crise financeira global. No entanto, os hiatos do produto após a crise são geralmente menos negativos (ou mais positivos) do que algumas outras estimativas. As reduções moderadas nas estimativas dos hiatos do produto em nosso modelo provavelmente refletem a queda relativamente modesta no núcleo da inflação nas quatro economias, o que, no contexto do modelo, está em desacordo com a presença de grandes hiatos negativos do produto.
+
+O diferencial da taxa de juro real estimado - a diferença entre a taxa de juro real ex ante e a estimativa filtrada da taxa de juro natural. Em consonância com a estrutura do modelo, após os períodos em que o hiato da taxa real é positivo, o hiato do produto estimado tende a estar em declínio; quando as taxas reais são negativas, o hiato do produto tende a aumentar.
+
+Embora tais ligações entre países não tenham sido impostas na estimativa, há evidências de um substancial movimento das estimativas tanto da taxa natural de juros quanto da taxa de crescimento da tendência do produto ao longo do tempo. Nós exploramos essa interdependência usando modelos de correção de erros de vetores (VECM).
+
+Com essa ressalva em mente, há evidências de um único vetor de cointegração que liga as quatro séries de taxas naturais com base em um teste padrão de Johansen. As estimativas do VECM sugerem que as taxas naturais acompanham o tempo, mas também estão sujeitas a influências idiossincráticas. As decomposições de variância indicam a presença de uma grande quantidade
+de interdependência nas taxas naturais entre as economias.
+
+Como as divergências implícitas em nosso único vetor de cointegração são um tanto confusas em um mundo de alta mobilidade de capital, também apresentamos resultados de um VECM no qual impomos três vetores de cointegração, novamente indicando interdependência em taxas naturais.
+
+Também encontramos evidências de comovimento nas estimativas do crescimento da tendência de produção nas quatro economias.
+%
+%
+\section{\citet{Portugal:2009}: The Natural Rate of Interest in Brazil between 1999 and 2005}
+O objetivo do presente estudo é estimar o nível da taxa natural de juros no Brasil. Em primeiro lugar, os filtros estatísticos (filtro HP e filtro Band-Pass) são utilizados para as séries de juros reais ex ante (deflaciona a Selic esperada doze meses a frente de acordo com a expectativa do IPCA, vinda da Focus  e ex post (deflaciona a taxa Selic usando o IPCA, acumulado doze meses). O filtro BP gera resultados mais voláteis do que usando o filtro HP.
+
+Então, uma estimativa de uma regra dinâmica de Taylor é executada. A taxa de juros de equilíbrio será extraída da função de reação usando um modelo dinâmico para o intercepto da regra de Taylor. Esse procedimento permite extrair a taxa de juros real com a qual o Banco Central do Brasil trabalhou implicitamente ao longo do período analisado, na tentativa de atingir suas metas de inflação e ajudar a suavizar os ciclos de negócios de curto prazo.
+
+A estimativa da taxa de juros real consistente com a função de reação foi feita usando o filtro de Kalman:
+\begin{eqnarray}
+    i_t &=& r_{e,t}^{*} + \beta_{1} i_{t-1} + \beta_{2}D_{j,t} + \beta_{3}h_{t-2} + \epsilon_{t,1} \\
+    r_{e,t}^{*} &=& r_{e,t-1}^{*} + \epsilon_{t,2}
+\end{eqnarray}
+
+$r_{e,t}^{*} $ é a taxa real de juros implícita nas decisões feitas pela autoridade monetária; $i_t$ é a taxa Selic nominal e mensal; $i_{t-1}$ taxa nominal mensal Selic defasada um período; $D_{j,t}$ desvio ponderado da expectativa de inflação da meta de inflação.
+
+Equação de medida:
+$$ [i_t] = [ \beta_1  \beta_2  \beta_3  r_{e,t}^{*} ] \left[ \begin{array}{}
+    i_{t-1} \\
+    D_{j,t} \\
+    h_{t-2} \\
+    1
+\end{array} \right] + [\epsilon_{t,1} ]$$
+
+Equação de transição:
+$$ \begin{bmatrix}
+\beta_{1,t} \\ \beta_{2,t} \\ \beta_{3,t} \\ r_{e,t}^{*}
+\end{bmatrix} =\left[\begin{array}{cccc}
+    1 & 0 & 0 & 0  \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \end{array} \right] \left[\begin{array}{}
+        \beta_{1,t-1} \\ \beta_{2,t-1} \\ \beta_{3,t-1} \\ r_{e,t-1}^{*}
+    \end{array}  \right] \left[ \begin{array}{c}
+         0 \\ 0 \\ 0 \\ \epsilon{t,2}
+    \end{array}  \right]$$
+
+Esses resultados mostram que a autoridade monetária brasileira trabalhou explícita ou implicitamente com uma taxa de juros real próxima aos resultados obtidos pelos filtros.
+
+Essas duas estimativas são eventualmente comparadas com a taxa natural de juros obtida a partir de um modelo simplificado de espaço de estados macroeconômicos seguindo \cite{LW:2003}. O modelo é baseado em duas equações macroeconômicas, uma curva de oferta agregada e uma curva de demanda agregada, onde o equilíbrio de mercado permite extrair o comportamento da taxa natural de juros da economia. Há duas suposições básicas sobre o método proposto pelos autores: (i) o hiato do produto converge para zero sempre que a diferença na taxa de juros - diferença entre os juros reais e a taxa natural - for zero; e, (ii) flutuações na inflação convergem para zero se o hiato do produto for zero. Para estimar o modelo, deve-se utilizar as equações de demanda (IS) e de oferta (curva de Phillips) na forma de espaço de estados, pois permite a extração do comportamento de variáveis não observadas.
+
+Curva IS:
+\begin{equation}
+    y_t &=& c + y_t^{*} + A_y(L)h_t + A_R(L)i_{R,t} + \upsilon{1,t}
+\end{equation}
+
+Curva de Phillips
+\begin{equation}
+    \pi_t &=& B_y(L)h_t + B_{\pi}(L)E_{t}(\pi_{t+1}) + B_{\pi} \pi_{t-1} + \upsilon_{2,t}
+\end{equation}
+     
+$y_t^{*}$ é o Produto potencial; $h_t$ hiato do produto; $i_{R,t} $ hiato da taxa de juros (taxa real de juros $r_{e,t}$ menos a taxa natural de juros $r_t^{*}$). As variáveis não observadas são definidads nas equações de estado. A taxa natural de juros:
+
+\begin{equation}
+    r_t^{*} = cg_t + z_t
+\end{equation}
+$g_t$ é a tendência de crescimento da taxa do produto natural (crescimento da produtividade); $z_t$ termo estocástico e segue um random walk AR(d): 
+
+\begin{equation}
+    z_t = D_{z}(L)z_{t-1} + \upsilon_{3,t}
+\end{equation}
+
+O produto potencial depende de componentes não observados que seguem um random walk e as equações de transição:
+\begin{eqnarray}
+    y_t^{*} &=& y_{t-1}^{*} + g_{t-1} + \upsilon_{4,t} \\
+    g_t &=& g_{t-1} + \upsilon_{5,t}
+\end{eqnarray}
+
+Escrevendo na forma de espaço de estado.
+
+Equação de Medida:
+$$ \begin{bmatrix}
+    h_t \\ \pi_t
+\end{bmatrix} = \left[\begin{array}{ccc}
+c & A_1 & A2 \\ 
+B_1 & B_2 & B_3 \end{array} \right] \left[ \begin{array}{cc}
+    1 & h_{t-1}  \\
+    h_{t-1} & E(\pi_{t+1}) \\
+    i_{R,t-1} & \pi_{t-1}
+\end{array} \right] + \left[ \begin{array}{c}
+   \upsilon_{1,t}  &  \upsilon_{2,t}
+\end{array} \right]
+$$
+
+Equação de Transição:
+$$ \begin{bmatrix}
+    z_{1,t} \\ z_{2,t} \\ y_{t}^{*} \\ g_t
+\end{bmatrix} = \left[ \begin{array}{cccc}
+    D_1 & D_2 & 0 & 0  \\
+     0  &  1 & 0 & 0  \\
+     0  &  0 & 1 & 1  \\
+     0  &  0 & 0 & 1  \\
+\end{array} \right] \left[ \begin{array}{c}
+       z_{1,t-1} \\ z_{2,t-1} \\ y_{t-1}^{*} \\ g_{t-1}
+\end{array} \right] + \left[\begin{array}{c}
+     \upsilon_{3,t} & 0 & \upsilon_{4,t} & \upsilon_{5,t}
+\end{array}  \right]
+$$
+
+A solução para este sistema permite determinar o padrão evolutivo das variáveis sobre as quais o comportamento da taxa natural é condicionado. No entanto, Stock e Watson (1998) chamam a atenção para o fato de que as estimativas deste tipo de modelo tendem a produzir resultados enviesados devido à ocorrência de “problema de pile-up”. Para resolver este viés, recomenda-se que um processo de estimativa sequencial, que fornece estimativas consistentes, seja realizado.
+
+A taxa foi muito próxima da obtida em outras estimativas feitas neste estudo, mostrando convergência entre os juros mais utilizados e a taxa natural.
+
+O comportamento de duas estimativas de diferenças nas taxas de juros. No primeiro, o gap resulta da diferença entre os juros reais ex ante e a taxa natural, enquanto no segundo, há uma diferença entre a taxa de juros real implícita na regra de Taylor e a taxa natural. Supostamente, à medida que a autoridade monetária tenta assumir uma postura de política neutra sobre a determinação da taxa de juros de referência, a comparação da taxa natural com essas duas estimativas deve render resultados muito próximos de zero.
+
+A comparação de ambas as estimativas de gap mostra que as decisões de política monetária no regime de metas foram realmente foward-looking, uma vez que o confronto entre os movimentos da taxa real de juros implícita na função reação com taxas de juros reais ex ante revelou resultados semelhantes na maioria das vezes, embora o resultado para a evolução do gap obtido pela regra de Taylor tenha sido menor que o do gap para as taxas de juros reais ex ante.
+
+Para investigar mais sobre esse tópico, é necessário descobrir o nível das taxas naturais de juros para o Brasil, porque somente as decisões de política monetária que resultam no comportamento sistemático de manter a taxa real acima da taxa natural podem ser caracterizadas como conservadoras ou não. Assim, a estimativa do nível de taxas de juros naturais compatíveis com um regime de metas de inflação e com a estrutura de oferta e demanda da economia brasileira é uma maneira de lançar alguma luz sobre o problema.
+
+O presente estudo estimou a taxa de juros natural utilizando, a princípio, um modelo macroeconômico simplificado e comparando sua evolução com as taxas de juros reais e com as taxas reais de juros implícitas nas decisões do Banco Central, baseadas em uma regra dinâmica de Taylor. Os resultados sugerem que o nível da taxa de juros natural brasileira é, na verdade, alto para os padrões internacionais. 
+
+Os resultados obtidos não são consistentes com os argumentos de que a política monetária brasileira tem sido extremamente rígida quanto à determinação da taxa de juros de referência para atingir as metas de inflação predefinidas. A autoridade monetária manteve a taxa de juros real ex ante e a taxa natural implícita da função de reação próxima ou abaixo da taxa natural na maior parte do tempo. Os resultados também indicam que, para que o Brasil reduza consistentemente suas taxas de juros reais, deve haver algumas mudanças nos fatores que afetam a taxa natural, como o aumento da produtividade total dos fatores, mudanças na elasticidade intertemporal do consumo ou na taxa de juros a sensibilidade da inflação às expectativas dos agentes econômicos, em vez de uma política monetária branda.
+%
+%
+\section{\citet{Renne:2007}: A time-varying ‘‘natural’’ rate of interest for the euro area }
+Neste documento, estimamos uma taxa de juros natural (NRI) variável no tempo para a área do euro considerada como uma entidade única no período 1979–2004. Nossa abordagem segue amplamente a metodologia desenvolvida recentemente por \citet{LW:2003}. De fato, o filtro de Kalman é usado para estimar um modelo de espaço de estado voltado para o passado, que engloba uma curva de Phillips e uma equação de demanda agregada. O NRI pertence ao vetor de variáveis não observadas, juntamente com o hiato do produto. 
+
+No entanto, duas inovações da nossa abordagem são que (a) assumimos um processo estacionário para a taxa de crescimento do produto potencial em vez de um processo I (1), como frequentemente postulado por outros autores. \citet{LW:2003}, impulsionam as flutuações comuns de baixa frequência do NRI e o crescimento do produto potencial permanece estacionário autorregressivo em vez de não estacionário, embora esperemos que seja bastante persistente. Isso nos permite evitar a difícil reconciliação de um crescimento do produto não-estacionário e uma taxa de juros real de equilíbrio não-estacionário com a teoria econômica e a intuição. (b) usamos expectativas de inflação consistentes com o modelo para calcular a taxa de juros real ex ante, em vez de uma proxy para as expectativas de inflação como geradas a partir de um modelo univariado de inflação.
+
+A análise empírica mostra que nossas estimativas são robustas a mudanças nos poucos parâmetros calibrados. Obtemos estimativas da diferença da taxa de juros real que oferecem informações valiosas sobre a postura da política monetária nas últimas duas décadas e meia. De acordo com nossos resultados e com foco apenas nos últimos anos, a postura da política monetária do BCE parece ter sido significativamente frouxa em 1999, mas amplamente apropriada em termos de estabilização da inflação desde então.
+
+Dito isto, os intervalos de confiança, que medem a incerteza associada à filtragem de Kalman, permanecem relativamente amplos. Além disso, a percepção errônea em tempo real da taxa natural de juros também pode ser substancial.
+
+O modelo consiste de 6 equações:
+\begin{equation} \label{Eq.NKPC}
+    \pi_t = \alpha_1 \pi_{t-1} + \alpha_2 \pi_{t-2} \alpha_3 \pi_{t-3} + \beta z_{t-1} + \epsilon_t^{\pi}
+\end{equation}
+
+\begin{equation} \label{Eq. IS}
+    z_t = \Phi z_{t-1} + \lambda(i_{t-2} - \pi_{t-1|t-2} - r_{t-2}^{*}) + \epsilon_t^{z}
+\end{equation}
+
+\begin{eqnarray}
+    r_{t}^{*} &=& \mu_r + \theta a_t \label{Eq. estado_NRI} \\
+    \Delta y_t^{*} &=& \mu_y + a_t + \epsilon_t^{y}   \label{Eq. estado_outputgap} \\
+    a_t &=& \psi a_{t-1} + \epsilon_t^{a} \label{Eq. estado_produtividade} \\
+    y_t &=& y_t^{*} + z_t     \label{Eq. estado_potencial}
+\end{eqnarray}
+
+com variâncias $\sigma_{\pi}, \sigma_z, \sigma_y, \sigma_a $. Os policy-makers controlam a taxa de inflação com uma defasagem de três períodos. O NRI é identificado através do IRG. Mais precisamente, assume-se que o hiato do produto converge para zero na ausência de choques de demanda e se o gap da taxa real se fecha. Neste modelo, a inflação estável é consistente com o hiato do produto zero e com o IRG. Uma característica importante do modelo é o fato de que a política monetária afeta a taxa de inflação apenas indiretamente por meio do hiato do produto. Por fim, tomamos a taxa nominal de juros de curto prazo como exógena, ou, diferentemente, a função de reação do banco central permanece implícita.
+
+Assume que a NRI $r_t^{*}$ segue um processo autoregressivo ao invés de um random walk, como especificado por (\ref{Eq. estado_NRI}) e (\ref{Eq. estado_produtividade}). É certo que o pressuposto do random walk para o NRI tem a vantagem técnica de combinar mudanças persistentes no componente não observável com uma acomodação suave de quebras estruturais plausíveis, mas não especificadas, na série de taxas de juros efetivas. No entanto, postular que o NRI segue um processo não-estacionário dificulta a interpretação econômica do modelo, em particular se assumirmos, como fazemos aqui, que o crescimento potencial $\Delta y_t^{*}$ compartilha flutuações comuns com a NRI. A estimativa completa do nosso modelo confirma que esse processo é de fato altamente persistente, o que se encaixa em nosso propósito de capturar flutuações grandes e de baixa frequência no nível da taxa real de equilíbrio, como também faria a hipótese de um NRI não estacionário.
+
+O processo autorregressivo denotado por $a_t$ capta variações de baixa frequência no crescimento do produto potencial, assumindo que essas variações são comuns com as do NRI. Além disso, o crescimento do produto potencial eq. (\ref{Eq. estado_outputgap}) tem outro componente estacionário, que pode explicar outras fontes de discrepâncias com a NRI - por exemplo, devido a choques nas preferências ou mudanças nas políticas fiscais. As estimativas mostram que um ruído branco simples é suficiente para modelar esse segundo componente estacionário.
+%
+%
+\section{\citet{Barbosa:2016}: A Taxa de Juros Natural e a Regra de Taylor no Brasil: 2003–2015 }
+
+Este trabalho estima a taxa de juros natural para a economia brasileira usando a metodologia de uma economia aberta pequena. Numa economia aberta pequena, o modelo do agente representativo não é apropriado por produzir resultados contrafactuais. A taxa natural de uma economia aberta pequena é igual a taxa de juros real internacional. Em países que existe restrições a mobilidade de capital deve-se adicionar os prêmios de risco apropriados.
+
+O hiato da taxa de juros depende da política monetária. A hipótese do mercado
+de crédito segmentado pode explicar este componente. A estimação da taxa de juros natural, com a metodologia deste trabalho, permite uma análise quantitativa dos vários componentes que determinam a taxa de juros natural no Brasil: i) a taxa de juros internacional; ii) o prêmio de risco país; iii) o prêmio de risco do câmbio; e iv) a taxa de retorno real das LFTs.  Ela não depende, portanto, da taxa de poupança doméstica da economia brasileira nem tampouco do déficit público. A sustentabilidade da dívida pública afeta a taxa de juros natural via prêmio de risco país.
+
+Este trabalho teve três objetivos. Em primeiro lugar, estimou-se a taxa de juros natural da economia brasileira, supondo que se trata de uma economia aberta pequena. Em segundo lugar, estimou-se a
+regra de Taylor para o Brasil, considerando o fato de que a taxa de juros natural varia ao longo do tempo, diferentemente das estimativas feitas para outras economias como a americana. A regra de Taylor inclui outras variáveis da economia aberta, como o câmbio real, que possam ter influência na decisão de
+política monetária. Em terceiro lugar, testou-se a hipótese de que teria havido uma mudança no comportamento do Banco Central do Brasil durante o primeiro mandato do governo da Presidente Dilma, ou
+seja, se teria havido mudanças na regra de Taylor brasileira. 
+
+A evidência empírica encontrada por este trabalho sugere que, durante o primeiro governo de
+Dilma Roussef, o Banco Central teve uma postura significativamente mais leniente do que em todo os
+outros anos analisados, o que pode ser entendido como uma das razões de a inflação ter ficado consistentemente acima da meta desde 2011.
+
+Numa economia aberta pequena sem restrições a mobilidade do capital e com ativos substitutos
+perfeitos a taxa de juros real doméstica é igual a taxa de juros internacional. Quando estas hipóteses não forem satisfeitas deve-se incorporar os termos de risco soberano $(\gamma_t)$ e do risco cambial $(\tau_t)$, supondo-se que não haja oportunidades de arbitragem. Portanto, a taxa de juros natural numa economia aberta pequena é dada por:
+\begin{equation}
+    \bar{r}_t = \bar{r}_t^{*} + \gamma_t + \tau_t
+\end{equation}
+
+Após adicionar os três termos, aplica-se um filtro Hodrick-Prescott.Como medida de taxa de juros internacional As escolhas usuais são a taxa de juros efetiva praticada pelo Federal Reserve Bank (Fed) — Fed Funds Effective Rate — descontada a inflação americana e a LIBOR, uma taxa internacional de referência, também descontada a inflação americana.
+
+No tocante à medida de risco soberano, há, novamente, diferentes escolhas possíveis em decorrência de diferentes horizontes de maturidade. No horizonte de um ano, a medida usual é EMBI+ Brazil. Para medir o prêmio cambial, utilizou-se o cupom cambial, que é o prêmio pago ao investidor para assumir o risco de investir na moeda do país escolhido. 
+
+Na economia brasileira existe um título público indexado a taxa de juros SELIC, a Letra Financeira do Tesouro (LFT), que domina as Reservas Bancárias do Banco Central do Brasil, por pagarem juros, terem liquidez imediata e seu preço não ser afetado pela taxa de juros. Estes títulos, por arbitragem, devem render, na média, o mesmo que outro título que tenha a mesma maturidade. Logo, a taxa de juros natural no Brasil deve ter um termo para medir este componente, como indicado por $\lambda$
+\begin{equation}
+    \bar{r}_t = \bar{r}_t^{*} + \gamma_t + \tau_t + \lambda_t
+\end{equation}
+
+A especificação da Regra de Taylor é prospectiva (forward-looking).
+\begin{eqnarray}
+    \hat{i}_t &=& \bar{r}_t + \pi_t + \beta_1 (\pi_{t+n}^{e} - \bar{\pi} ) + \beta_2 y_t + \beta_3 y_{t-1} + \beta_4 (q_t - q_{t-1}) + \beta_5 (\Delta q_t -  \Delta q_{t-1}) \\
+    \Delta i_t &=& \lambda(\hat{i}_t - i_{t-1}) + \rho \Delta i_{t-1}
+\end{eqnarray}
+$q_t$ é a taxa de câmbio. A regra de política monetária indica que a taxa de juros aumenta se a diferença entre a taxa de juros natural nominal e taxa de juros vigente no período anterior aumenta, se as expectativas inflacionárias estiverem acima da meta, se o produto estiver acima do potencial e se ocorrer uma depreciação cambial real entre o período atual e o anterior. Os dados da economia brasileira não mostram uma tendência na taxa de câmbio real indicando, portanto, não existir o efeito Harrod–Balassa–Samuelson, que invalidaria a variação da taxa de câmbio real como variável explicativa da Regra de Taylor.
+%
+%
+\section{\citet{Bjornland:2011}: Estimating the natural rates in a simple New Keynesian framework  }
+
+O objetivo principal deste artigo é apresentar um arcabouço simples para derivar as taxas naturais dentro de um cenário de modelo novo keynesiano. O modelo é pequeno, mas incorpora os principais ingredientes da estrutura novo keynesiana, tornando-se um instrumento útil para analisar como as mudanças nas taxas naturais afetam a economia e a política monetária. Apesar da natureza simples do modelo, derivamos estimativas plausíveis de variação de tempo das taxas naturais e as taxas de juros e hiatos do produto correspondentes usando estimativas bayesianas e técnicas de filtro de Kalman nos dados dos EUA.
+
+Este artigo fornece estimativas da taxa de juros real natural, do hiato do produto e da meta implícita de inflação para a economia dos EUA. A meta de inflação desde 1994 tem sido notavelmente estável em torno de 2$\%$. A taxa de juros real natural, no entanto, tem variado muito.
+
+Ao estimar a curva híbrida New Keynesian Phillips com uma estimativa consistente do modelo do hiato do produto, descobrimos que a estrutura da curva é muito semelhante àquela encontrada pela estimativa da curva de Phillips com a participação do trabalho na renda. Nossos resultados são, portanto, uma contribuição para o debate sobre se é o hiato do produto ou a participação do trabalho na renda, que fornece a melhor representação para o processo de inflação.
+
+Nossa abordagem é, no entanto, uma reserva em relação a uma abordagem DSGE completa, na medida em que não impomos restrições tecnológicas nem modelamos o mercado para fatores de produção. O lado da oferta da economia é governado por processos exógenos. Outra faceta da contribuição deste artigo é a concessão da possibilidade de uma meta de inflação variável no tempo. Uma terceira novidade da nossa abordagem é que ela não exige detrending os dados antes da análise (usando, por exemplo, o filtro HP) ou torna o produto estacionário deflacionando por uma variável de tendência.
+
+O que o modelo deles tem de diferente do Gali (2015).
+
+Consumidor: Hábito externo, com persistência de segunda ordem $H_t = C_{t-1}^{\gamma_1}C_{t-2}^{\gamma_2}$. Isso gera a seguinte IS Curve: $\Delta y_t = \dfrac{\sigma}{\gamma_1(\sigma -1 )}E_t \Delta y_{t+1} - \dfrac{\gamma_2}{\gamma_1}\Delta y_{t-1} - \dfrac{1}{\gamma_1 (\sigma -1)}(i_t - E_t \pi_{t+1} - \rho) + \dfrac{1}{\gamma_1}(\upsilon_t - E_t \upsilon_{t+1}) $. O choque de preferência no consumo: $\upsilon_t = \rho_{\upsilon}\upsilon_{t-1} + \epsilon_t^{\upsilon} $. \\
+
+Oferta Agregada. Curva de Phillips híbrida, que incorpora foward-looking e backward-looking $\pi_t = \mu E_t \pi_{t+1} + (1 - \mu) \sum_{j=1}^{4} \alpha_j \pi_{t-j} + \kappa x_t + \epsilon_t^{\pi} $.Hiato do produto $x_t = y_t - y_t^{n}$. A taxa natural do produto é dado por um processo exógeno: $\Delta y_t^{n} = \upsilon + \omega_t $. Aqui $\omega_t$ é o choque na taxa de crescimento (choque na taxa natural) $\omega_t = \phi \omega_{t-1} + \varrho_t $. O hiato do produto segue o seguinte processo $x_t = x_{t-1} + \Delta y_t - \Delta y_t^{n} $.\\
+
+Política Monetária. Regra de Taylor $i_t = \psi i_{t-1} + (1 - \psi)(i_t^{n} + \theta_{\pi}(\bar{\pi}_t - \pi_t^{T}) + \theta_x x_t ) + \epsilon_t^{i} $, $i_t^{n}$ é a taxa natural nominal de juros, $\bar{\pi}_t = \dfrac{1}{4} \sum_{j=0}^{3} \pi_{t-j}$, a meta de inflação varia ao longo do tempo $\pi_t^{T} = (1 - \rho_{\pi}) \pi^{*} + \rho_{\pi}\pi_{t-1}^{T} + \xi_t$ e $\xi_t $ é um AR(1) choque na meta de inflação $\xi_t = \rho_{\xi}\xi_{t-1} + \epsilon_t^{\xi}$.\\
+
+A taxa natural de juros. Pode ser obtida a partir da IS Curve $\Delta y_t^{n} = \dfrac{\sigma}{\gamma_1(\sigma -1 )}E_t \Delta y_{t+1}^{n} - \dfrac{\gamma_2}{\gamma_1}\Delta y_{t-1}^{n} - \dfrac{1}{\gamma_1 (\sigma -1)}(i_t^{n} - E_t \pi_{t+1} - \rho) + \dfrac{1}{\gamma_1}(\upsilon_t - E_t \upsilon_{t+1}) $. Isolando a taxa natural de juros $i_t^{n} = \delta + E_t \pi_{t+1} + \sigma \Delta E_t y_{t+1}^{n} - \gamma_1 (\sigma -1) \Delta y_t^{n} - \gamma_2(\sigma -1) \Delta y_{t-1}^{n} + (\sigma -1)(\upsilon_t - E_t \upsilon_{t+1}) $. A taxa de juros real natural $ r_t^{n} = i_t^{n} - E_t \pi_{t+1}$. O hiato do produto pode ser obtido subtraindo a IS Curve da IS Curve do produto natural $ x_t = \dfrac{\sigma}{A}E_t x_{t+1} + \dfrac{(\gamma_1 - \gamma_2)(\sigma -1 )}{A}x_{t-1} + \dfrac{\gamma_2(\sigma -1)}{A}x_{t-2} - \dfrac{1}{A}(i_t - i_t^{n}) $.
+%
+%
+\section{\citet{Orphanides:2002}: Robust Monetary Policy Rules with Unknown Natural Rates }
+Policymakers não conhecem os valores dessas taxas naturais em tempo real, isto é, quando tomam decisões políticas. De fato, mesmo em retrospectiva, há uma incerteza considerável em relação às taxas naturais de desemprego e juros, e ambiguidade sobre como melhor modelar e estimar as taxas naturais.
+
+Esses problemas de mensuração parecem ser particularmente agudos na presença de mudanças estruturais quando as taxas naturais podem variar de maneira imprevisível, fazendo com que as estimativas das taxas naturais estejam sujeitas a um aumento da incerteza.
+
+Empregamos um modelo trimestral foward-looking da economia norte-americana para examinar as propriedades de desempenho e robustez de regras de política de taxa de juros simples na presença de medidas precárias em tempo real das taxas naturais de juros e desemprego. Um aspecto fundamental de nossa investigação é o reconhecimento de que os formuladores de políticas podem estar incertos quanto aos verdadeiros processos geradores de dados que descrevem as taxas naturais de desemprego e juros e a extensão do problema de inconsistência que eles enfrentam. Como resultado, aplicações padrão de equivalência certeza baseadas no problema clássico de controle linear-quadrático-Gaussiano não se aplicam.
+
+Nós achamos que os custos de subestimar a extensão da mensuração da taxa natural excedem significativamente os custos de superestimação. Adoção de regras de política otimizadas sob a falsa suposição de que as percepções errôneas em relação às taxas naturais provavelmente serão pequenas, o que é particularmente custoso em termos de estabilização da inflação e do desemprego.
+
+Quando os formuladores de políticas não possuem uma estimativa precisa da magnitude das percepções errôneas em relação às taxas naturais, uma estratégia robusta é agir como se a incerteza que enfrentassem fosse maior do que suas estimativas básicas sugerem que pode ser. Mostramos que negligenciar essas considerações pode facilmente resultar em políticas com desempenhos de estabilização consideravelmente piores do que o previsto.
+
+Nossos resultados apontam para uma estratégia simples e eficaz que é uma solução robusta para as dificuldades associadas às percepções errôneas da taxa natural. Isso é para adotar, como diretrizes para política monetária, regras de diferenças nas quais a taxa de juros nominal de curto prazo é aumentada ou diminuída de seu nível existente em resposta à inflação e mudanças na atividade econômica. Essas regras, que não requerem conhecimento das taxas naturais de juros e desemprego e, consequentemente, são imunes a percepções errôneas nesses conceitos, emergem como a solução para um exercício de controle robusto a partir de uma família mais ampla de especificações de regras de política.
+
+Este artigo reexaminou criticamente a utilidade das taxas naturais de juros e desemprego no cenário da política monetária. Nossos resultados sugerem que subestimar a falta de confiabilidade das estimativas em tempo real das taxas naturais pode levar a políticas que são muito muito caras em termos do desempenho de estabilização da economia. De fato, nossas análises e conclusões são baseadas inteiramente em modelos em que os desvios das taxas naturais são os principais propulsores da inflação e do desemprego. Em vez disso, argumentamos que a incerteza sobre as taxas naturais em tempo real recomenda não depender excessivamente desses indicadores intrinsecamente ruidosos para decisões de política monetária.
+%
+%
+\section{\citet{Canzoneri:2015}: Monetary Policy and the Natural Rate of Interest}
+
+Neste artigo, mostramos que o rastreamento da taxa natural também é importante para o bem-estar do household. Além disso, mostramos que é mais importante em um ambiente em que as taxas de juros tomam grandes e persistentes oscilações em torno de seus valores de equilíbrio de longo prazo, e é difícil para as regras de política monetária padrão fazer com que a taxa de juros alcance sua taxa natural. Usamos dois modelos para ilustrar esse fato: em um - que chamamos de Modelo Padrão (Novo Keynesiano) - as oscilações na taxa natural são substanciais, mas são de curta duração. No outro modelo - que chamamos de Modelo de Liquid Bonds - as oscilações podem ser maiores e muito mais persistentes. A razão é que os títulos do governo fornecem liquidez nesse modelo. Assim, um aumento no gasto público que é (inicialmente) financiado pela dívida proporcionará liquidez adicional neste modelo, gerando movimentos prolongados na demanda do consumidor e taxas de juros de equilíbrio. Mostraremos que o rastreamento da taxa natural é muito mais importante para o bem-estar do household no Modelo de Liquid Bonds. Em qualquer um dos modelos, os desvios da taxa de juros da taxa natural dependerão da política monetária vigente. Consideram 4 regras de Taylor:
+
+\begin{align}
+    \textsf{Regra 1 (regra básica de Taylor): }  i_t = \bar{i} + 1,5(\pi_t - \bar{\pi})  \\
+    \textsf{Regra 2 (regra suavizada de Taylor): } i_t = 0,8i_{t-1} + 0,2[\bar{i} + 1,5(\pi_t - \bar{\pi}) ] \\
+    \textsf{Regra 3 (regra primeira diferença): } i_t = i_{t-1} + 1,5(\pi_t - \bar{\pi}) \\
+    \textsf{Regra 4 (regra da taxa natural): } i_t = [r_r^{n} + E_t(\pi_{t+1})] + 1,5(\pi_t - \bar{\pi}) 
+\end{align}
+
+A regra 4 é uma variante da regra de taxa natural discutida acima e funciona muito bem em ambos os nossos modelos. No entanto, a regra 4 pressupõe que a taxa natural é conhecida em todos os períodos. Como a taxa natural não é observada na prática, vemos a Regra 4 como a referência pela qual mais regras operacionais devem ser julgadas.
+
+As regras 1 e 2 são regras convencionais de Taylor que foram estudadas extensivamente na literatura. Acredita-se que estejam operacionais, uma vez que apenas assumem que o valor de equilíbrio de longo prazo da taxa natural é conhecido. Essas regras demonstraram fornecer uma boa descrição empírica das políticas monetárias usadas por muitos bancos centrais e são frequentemente usadas em exercícios de avaliação de políticas. A Regra 3 não se enquadra na classe das regras convencionais de Taylor, e não temos conhecimento de qualquer literatura empírica, ou declaração do banco central, sugerindo que ela tenha sido seguida na prática. No entanto, essa primeira regra de diferença seria claramente implementável; na verdade, nem sequer exige o valor de equilíbrio de longo prazo da taxa natural.
+
+No Modelo Padrão, a diferença na utilidade do household entre a Regra 1 e a Regra 4 vale 0,25$\%$ do consumo de estado estacionário a cada período, o que é um número substancial na literatura novo keynesiana. Em nossa calibração de referência do Modelo de Liquid Bonds, a diferença aumenta para 0,5$\%$ do consumo a cada período. Dinheiro e títulos são complementos na calibração de benchmark; tomamos nosso valor pela elasticidade de substituição entre dinheiro e títulos de uma estimativa de uma das equações do modelo. No entanto, nossas estimativas não são muito precisas e mostramos que, se em vez disso dinheiro e títulos fossem substitutos, então a diferença de utilidade entre a Regra 1 e a Regra 4 poderia estar mais próxima do que encontramos no Modelo Padrão. Finalmente, mostramos que a Regra 3 faz o melhor trabalho de rastrear a taxa natural após os quatro ou cinco trimestres iniciais, e ela executa quase tão bem quanto a Regra 4 em termos de utilidade doméstica. Achamos que a razão para isso é que, estando livre de um termo fixo de interceptação, a taxa de juros é livre para se mover amplamente ao longo do tempo.
+
+Antes de proceder à análise, devemos abordar uma questão que está no centro do nosso trabalho: os títulos realmente têm valor de liquidez? A premissa básica não deve ser controversa. Os Treasuries dos EUA facilitam as transações de várias maneiras: servem como garantia em muitos mercados financeiros, os bancos os detêm para administrar a liquidez de seus portfólios e os indivíduos os mantêm em contas do mercado financeiro que oferecem serviços de verificação.
+
+Há uma lição oportuna a ser aprendida em nossa análise. Até o momento, muitos países da OCDE estão empreendendo, ou contemplando, grandes cortes nos gastos do governo para estabilizar suas dívidas soberanas. Se os títulos fornecem serviços de liquidez, nossos resultados sugerem que a taxa de juros natural estará em movimento e difícil de acompanhar. A primeira regra de diferença parece ser feita apenas para esta situação.
+%
+%
+\section{\citet{Melosi:2015}: The Natural Rate of Interest and Its Usefulness for Monetary Policy }
+
+Interessante desse artigo é eles explicando o que é NRI em um modelo DSGE. Eles usam como modelo base, o livro do Gali. Em resumo, da IS Curve temos: $y_y = E_t y_{t+1} - s(i_t - E_t \pi_{t+1} - \rho_t ) - 0,5 s^{-1}\text{var}_t[y_{t+1}] $. A taxa natural de juros deve satisfazer $E_t[\Delta y_{t+1}^{n}] = s(r_t^{n} - \rho_t) + 0,5s^{-1}\text{var}_t[y_{t+1}] $. Resolvendo algebricamente $r_t^{n} = \rho_t + s^{-1}E_t[\Delta y_{t+1}^{n}] - 0,5s^{-2}\text{var}_t[y_{t+1}]$. Definição de produto natural $y_t^{n} = \psi_{ya}^{n}a_t + \vartheta_y^{n} $. Portanto a definição de taxa natural de juros: $r_t^{n} = \rho_t + s^{-1}\psi_{ya}^{n} E_t[\Delta a_{t+1}] - 0,5s^{-2}(\psi_{ya}^{n})^{2}\text{var}_t[a_{t+1}]$. O hiato do produto é $\tilde{y}_t = y_t - y_t^{n} $. Com isso, podemos chegar em $\tilde{y}_t = -s \sum_{k=0}^{\infty} E_t(r_{t+k} - r_{t+k}^{n}) $. A última expressão torna evidente que o hiato do produto é a soma de todos os hiatos da taxa de juros reais futuros, definidos como os desvios da taxa real ex ante, $i_t - E_t(\pi_{t+1})$ da taxa natural, $r_{t}^{n} $.
+
+O que afeta a taxa natural de juros:
+\begin{itemize}
+    \item A taxa natural de juros é crescente na taxa de preferência, $\rho_t$ e a expectativa de crescimento da taxa de tecnologia $E_t[\Delta a_{t+1}] $ e decrescente na variância condicional da tecnologia futura $\text{var}_t[a_{t+1}] $.
+    \item Uma trajetória da taxa de juro em que a taxa real real é sempre igual à taxa natural atinge tanto um hiato do produto de zero (no sentido em que o produto é igual ao natural, isto é, nível de equilíbrio de preço flexível) como a inflação igual a zero.
+\end{itemize}
+
+Eles baseiam-se no conhecido framework de Smets e Wouters (2007), que se mostrou adequado aos dados. Um modelo DSGE razoavelmente rico indica que, desde 1990, a taxa de juros real natural, definida como a taxa real de uma economia eficiente, sem rigidez nominal nem distorções de cost-push, tem sido bastante variável e altamente pró-cíclica. Eles descobrem que a taxa natural poderia ser uma estatística sumária útil para o FED, na medida em que a política projetada para rastreá-la estabilizaria significativamente o produto e falhas ineficientes, ao mesmo tempo em que diminuiria a variabilidade da inflação de preços e salários. No entanto, o limite inferior zero da taxa de juros e a dificuldade de calcular a taxa natural em tempo real impõem desafios não triviais à adoção da taxa de juros natural como meta implementável da política monetária.
+
+Ao contrário do modelo canônico na primeira parte do artigo, uma economia mais rica, que está sujeita a choques de oferta ineficientes (por exemplo, choques de markup ou outros choques cost-push), não parece ter uma definição única e inequívoca do taxa de juros (ou produto). Pode-se definir a taxa natural como a taxa que prevaleceria se os salários e os preços fossem perfeitamente flexíveis. No entanto, se choques cost-push - também conhecidos como choques de markup - criam ineficiências, o equilíbrio de salários e preços flexíveis associados não seria "relevante para o bem-estar". Assim, em nosso modelo empírico, escolhemos definir a taxa de juros real e o nível de produto reais, como aqueles que teriam prevalecido em uma economia sem rigidez nominal nem choques nas margens de preço e de salário.
+
+Estimativas da taxa natural (trimestralmente), que segue uma padrão altamente procíclico caracterizado por variações bastante pronunciadas. Talvez surpreendentemente, não observamos uma queda substancialmente maior durante a Grande Recessão do que nas duas desacelerações anteriores. No entanto, em contraste com recessões anteriores, manteve-se persistentemente negativo desde 2008. Este último achado é explicado principalmente pelo choque de risco negativo altamente persistente que, de acordo com o nosso modelo, desencadeou a Grande Recessão e é responsável pela lenta recuperação.
+%
+%
+\section{\citet{Edge:2008}: Natural rate measures in an estimated DSGE model of the U.S. economy  }
+Estima um DSGE para economia dos EUA, utilizando de técnicas de econometria bayesiana. Eles usam seu modelo estimado para gerar e interpretar estimativas baseadas em modelo do produto potencial e a taxa natural de juros. Em modelos DSGE estimados como o nosso, os caminhos históricos para choques estruturais não observados são estimados além dos valores dos parâmetros. Consequentemente, podemos derivar estimativas históricas de variáveis de taxa natural, que, de maneira importante, têm interpretações estruturais muito claras.
+
+Em sua discussão sobre nossas estimativas baseadas em modelo de produto potencial (e, portanto, o hiato do produto) e a taxa natural de juros, fornecemos vários exemplos de como nosso modelo pode auxiliar sua compreensão da macroeconomia dos EUA nos últimos 20 anos. Além disso, também consideramos como as estimativas do nosso modelo do hiato do produto e a taxa de juros natural diferem daquilo que consideramos como sabedoria convencional. Descobrimos que, embora a trajetória estimada do modelo da taxa natural de juros seja notavelmente mais volátil do que as estimativas derivadas (e nossa visão da sabedoria convencional), a trajetória estimada do modelo do hiato do produto compartilha algumas características importantes com outras produções mais tradicionais. estimativas baseadas em função.
+
+A taxa natural de juros implícita em nosso modelo é muito volátil. Além de sua plausibilidade para os formuladores de políticas, pode haver mais questões relacionadas a flutuações na taxa de juros natural e seu papel no processo político em um modelo típico de DSGE como o nosso. Em particular, nosso modelo baseia-se na persistência de hábito para gerar respostas persistentes, em forma de hump-shaped, de variáveis-chave de gastos para os fundamentos. É bem sabido que essa especificação de preferências tem algumas implicações de preços de ativos intragáveis; Especificamente, esses modelos implicam substancial volatilidade na taxa de juros real livre de risco.
+%
+%
+\section{\citet{Lopez-Salido:2009}: Money and the natural rate of interest: Structural estimates for the United States and the euro area }
+
+Neste artigo, examinam o papel da moeda em uma estrutura geral que abrange três ambientes concorrentes: o modelo novo keynesiano  base com utilidade separável e demanda de moeda estática; utilidade inseparável entre o consumo e os saldos reais, juntamente com a formação de hábitos; e o modelo modificado para permitir custos de ajuste para manter os saldos reais. As duas últimas variantes implicam um caráter foward looking dos saldos monetários reais que transmite a moeda um papel importante como indicador de política monetária. o modelo padrão Novo Keynesian é um caso especial restritivo em que a moeda é menos informativo. Distinguimos entre esses cenários alternativos, realizando uma análise econométrica estrutural para os Estados Unidos e a área do euro. Nossas estimativas de probabilidade confirmaram o caráter foward looking da demanda por moeda. Uma das principais fontes desse comportamento voltado para o futuro é a existência de custos de ajuste de portfólio.
+
+Ilustram como o valor da moeda aumenta em nos modelos estimados, em relação ao modelo base novo keynesiano, pela especificação da dinâmica da demanda por moeda para a qual encontramos suporte empírico. Nós nos concentramos nas ligações entre a moeda e a taxa natural e demonstramos que a moeda pode ter valor como um indicador de futuras variações na taxa natural, mesmo quando a dinâmica da inflação é vista através de uma estrutura neo-wickselliana do tipo defendido por Woodford (2003).
+
+Neste artigo, distinguimos entre as visões alternativas do papel da moeda no mecanismo de transmissão, realizando uma análise econométrica estrutural das economias dos EUA e da área do euro. O modelo de equilíbrio geral estocástico dinâmico que estimado fornece cada variante de modelo  como um caso especial. Um resultado importante é que as estimativas de máxima verossimilhança confirmam o caráter prospectivo da demanda por moeda. Usando o modelo estimado, é capaz de demonstrar a capacidade aumentada da moeda para capturar o mecanismo de transmissão da política monetária quando a demanda por moeda tem um elemento prospectivo. Em particular, mostramos que o valor do dinheiro como proxy para as variações na taxa de juros natural e a diferença da taxa de juros real é aumentado.
+
+A demanda por moeda é dada por:
+$$\tilde{m}_t = \psi\tilde{m}_{t-1} + b_0 \tilde{y}_t + c_o \tilde{r}_t + \sum_{i=1}^{\infty} d_i E_t \tilde{rr^{*}}_t  \sum_{i=1}^{\infty} f_i E_t \{\tilde{rr}_{t+i} - \tilde{rr^{*}}_{t+i}  \} + \epsilon_t $$
+
+Que toda a variação nos saldos reais não é decorrente de seus determinantes "convencionais" (ou seja, a renda real atual, a
+taxa de juros de curto prazo atual, saldos defasados e o choque de demanda de moeda) está associado a movimentos nas defasagens de taxa de juros futura esperadas ou taxas de juros reais naturais esperadas. Notamos que a relação entre os saldos monetários reais e a taxa natural é bastante complexa, não apenas por causa da dinâmica envolvida, mas também porque a taxa natural entra com coeficientes negativos e positivos na expressão.
+
+Essa perspectiva sobre a relação demanda por moeda destaca três vantagens da estimativa de nosso modelo estrutural por métodos de informação completa. Primeiro, as funções de demanda por moeda estimadas padrão negligenciam o comportamento prospectivo. O erro de especificação resultante ignora as informações sobre a taxa natural na demanda por moeda, em vez de atribuir a variação associada nos saldos reais a choques de demanda, ajustes defasados e respostas à renda corrente e à taxa de juros nominal. Nossa abordagem, ao contrário, isola o componente prospectivo da demanda por moeda e, portanto, oferece a perspectiva de uma estimativa consistente dos parâmetros de demanda monetária. Em segundo lugar, ao especificar explicitamente os processos de choque e o comportamento da política e, assim, o caminho implícito dos termos de expectativas que aparecem nas condições de otimalidade dos agentes, podemos extrair estimativas de taxa natural de outros determinantes inobserváveis da demanda de moeda. Terceiro, outras estimativas empíricas de séries de desvios de taxa natural e real utilizando métodos de sistemas, seja com modelos ad hoc (eg Laubach e Williams, 2003) ou modelos DSGE (eg Smets e Wouters, 2003), sacrificam informações sobre a taxa natural por não incluir saldos monetários reais no conjunto de variáveis modeladas. Nossas estimativas de sistemas, pelo contrário, incluem dinheiro na função de verossimilhança.
+
+A taxa real de juros natural corresponde à taxa real de juros de curto prazo que prevaleceria quando a probabilidade Calvo se aproxima de 1,0, ou seja, quando todos os preços são flexíveis (e todas as empresas são foward looking). O processo de taxa natural será invariante à regra de política monetária, mas será uma função (possivelmente dinâmica) dos dois choques reais no modelo (IS (preferência) e choque tecnológico). Na aplicação aqui, a obtenção de uma série de taxa natural envolve a avaliação de nosso modelo com parâmetros que descrevem preferências e produção em seus valores estimados, resolvendo o modelo a preços flexíveis e obtendo uma representação ao estilo de Wold da taxa natural.
+%
+%
+\section{\citet{Neri:2018}: Natural rates across the Atlantic }
+
+Neste artigo, estimamos um modelo DSGE de média escala para responder a duas questões relacionadas: (i) qual é o nível atual da taxa natural nos EUA e na área do euro; (ii) quais são os principais fatores subjacentes ao seu desenvolvimento nas últimas décadas e, em particular, desde a eclosão da crise financeira global. Dentro da literatura DSGE, a taxa natural é definida como a taxa real que surge em uma economia em que a produto é igual ao potencial e a inflação é igual a meta do banco central. Adotamos essa definição e calculamos a taxa natural, desligando a rigidez nominal. O modelo é dotado de um rico conjunto de choques que nos permitem avaliar quais dos pontos de vista apresentados na literatura para o declínio das taxas de juros obtêm suporte empírico.
+
+Utilizamos um modelo estrutural (DSGE), já que, a nosso ver, essa abordagem tem a vantagem decisiva de fornecer intuição econômica para os determinantes subjacentes da taxa natural. incluem dois conjuntos de choques: choques permanentes que afetam a taxa de crescimento da tendência da economia e choques transitórios que impulsionam seu componente cíclico (ou seja, em torno da tendência). Os choques desempenham o papel de “wedges” que o modelo exige para explicar os dados. Como esses wedges são escolhidas para “falar” com as teorias do ambiente de baixa taxa de juros, a estimativa nos diz quais teorias são mais consistentes com os dados. Consideramos que esta é nossa contribuição para a literatura, além de comparar as estimativas das taxas naturais em duas grandes economias avançadas e destacar o papel de fatores comuns.
+
+Nossos resultados apontam para desenvolvimentos qualitativamente semelhantes nas duas economias. A taxa natural atingiu o seu nível máximo no início dos anos oitenta nos EUA e início dos anos noventa na área do euro. Desde então, diminuiu persistentemente até os primeiros anos deste século, quando atingiu essencialmente zero por cento. Após um aumento em 2007 e 2008, a taxa natural começou a cair novamente e atingiu valores negativos após a eclosão da crise financeira global. Nossos resultados confirmam a descoberta em estudos recentes nos EUA.
+
+As diferenças na contribuição dos choques entre os EUA e a área do euro ressaltam a importância de se adotar uma abordagem estrutural com uma estrutura estocástica rica para a estimativa da taxa natural. Os resultados mostram que a tendência de queda nas taxas naturais se deve a choques transitórios, mas persistentes, desfavoráveis, e sugerem a necessidade de desenvolver modelos que apresentem fatores financeiros, incluindo a presença de ativos seguros e escassos.
+
+A análise mostrou que a taxa natural tem apresentado tendência de queda nas últimas décadas, contribuindo para a redução das taxas nominais e reais. Os choques do prêmio de risco, a captura de mudanças na preferência por ativos seguros, a eficiência do investimento, o potencial para o funcionamento do setor financeiro e a tecnologia têm sido os principais impulsionadores, com graus variados dependendo da economia e do período. Esses resultados ressaltam a importância de se adotar uma abordagem estrutural com uma estrutura estocástica rica para estimar as taxas naturais.
+
+Choques Permanentes: tecnologia aumentadora de trabalho, tecnologia específica de investimento e oferta de trabalho.
+
+Choques Transitórios: política monetária, mark-up, PTF, eficiência marginal do investimento, preferências por ativos seguros (risk premium) e SDF.
+%
+%
+\section{\citet{Justiniano:2010}: Measuring the Equilibrium Real Interest Rate }
+
+A taxa de juros real de equilíbrio é um conceito crucial na classe de modelos novo keynesianos. Essa taxa representa a taxa real de retorno necessária para manter a produção da economia igual à produção potencial, que, por sua vez, é o nível da produção consistente com preços e salários flexíveis e as constantes markup nos mercados de bens e de trabalho. Enquanto isso, a diferença entre a taxa de juros real ex ante - a taxa de juros nominal menos a inflação esperada - e a taxa de juros real de equilíbrio é definida como da taxa de juros real gap.
+
+No modelo novo keynesiano, a diferença da taxa de juros real (RIR daqui em diante) é central para a determinação da taxa de juros e da inflação. Falando livremente, se essa lacuna do RIR for positiva, a produção diminuirá em relação ao potencial. Isso ocorre porque as pessoas estarão inclinadas a adiar as decisões de gastos hoje para aproveitar os maiores retornos da economia. Tudo o mais sendo igual, um hiato negativo do produto colocará pressões descendentes sobre os preços e os salários por causa da demanda agregada mais fraca. Por outro lado, um gap negativo do RIR estará tipicamente associado a um hiato positivo do produto, colocando em movimento as forças inflacionárias - uma demanda maior leva a preços mais altos.
+
+O RIR de equilíbrio constitui uma referência natural para a condução da política monetária, e o gap do RIR pode ser visto como fornecendo alguma indicação da postura da política monetária. Embora o RIR de equilíbrio seja teoricamente atraente, seu uso na orientação de decisões de política monetária enfrenta pelo menos dois grandes obstáculos. Em primeiro lugar, o RIR de equilíbrio não é diretamente observável nos dados, limitando sua utilidade como um meta para a política monetária na prática. O RIR de equilíbrio flutua ao longo do tempo em resposta a uma variedade de choques nas preferências e na tecnologia que perturbam a economia.
+
+Segundo, definir taxas de juros nominais para rastrear o RIR de equilíbrio pode não ser viável às vezes devido à existência do zero bound; isto é, as taxas de juros nominais não podem ser definidas abaixo de zero. De fato, o RIR de equilíbrio pode cair o suficiente para induzir um gap positivo no RIR, mesmo com a taxa de juros nominal em zero. A produção cairia abaixo do potencial, gerando deflação. Desta forma, a diferença nos ajuda a medir a restrição imposta pelo zero ligado à política monetária. Com taxas de juros nominais de curto prazo agora em níveis historicamente baixos nos Estados Unidos e em vários outros países industrializados, esse cenário está recebendo muita atenção tanto da comunidade acadêmica quanto dos formuladores de políticas.
+
+Dada a importância que o RIR de equilíbrio desempenha para o desenho da política monetária em modelos macroeconômicos modernos, nosso objetivo neste artigo é fornecer uma estimativa dessa variável não observável. Fazemos isso inferindo-o de um novo modelo keynesiano empírico adaptado aos dados trimestrais dos EUA. 
+
+Especificamente, nossa análise realiza três objetivos. Primeiro, descrevemos a evolução histórica do RIR de equilíbrio. Descobrimos que essa taxa foi negativa às vezes, particularmente no final da década de 1970 e, o mais interessante, durante a última recessão.
+
+Além disso, estimamos o gap de curto prazo do RIR como a diferença entre o RIR ex ante atual (em oposição ao futuro) e o RIR de equilíbrio. Isso fornece algumas indicações sobre a postura da política monetária. Em consonância com a visão anedótica, a estimativa do gap do RIR de curto prazo sugere que a política foi frouxa durante a maior parte da década de 1970. Em contraste, a política parece ter sido apertada no final da nossa amostra. No entanto, isso reflete principalmente o problema do zero bound - incapacidade dos formuladores de políticas de reduzir as taxas de juros nominais de curto prazo abaixo de zero - e fornece uma justificativa para as medidas não convencionais adotadas pelo Federal Reserve durante a recessão mais recente, como compras diretas de de curto prazo e criação de instalações e programas especiais
+
+Por fim, comparamos a evolução o gap de curto prazo e de curto prazo dos RIRs, onde a última é definida como a soma dos gaps de curto prazo atuais e futuras de RIR ou, alternativamente, a diferença entre os RIR ex-ante de longo prazo e o RIR de longo prazo de equilíbrio. As taxas de longo prazo refletem a trajetória das taxas de curto prazo atuais e futuras esperadas. Portanto, os gaps de longo prazo resumem as expectativas privadas sobre os resultados macroeconômicos futuros e a política monetária, fornecendo uma medida mais voltada para o futuro da orientação da política. Por exemplo, de acordo com esta medida, a política não foi frouxa no período de 2002-2006, que precedeu a recente desaceleração econômica. Essa caracterização da postura da política contrasta com o que é sugerido pelo gap de curto prazo do RIR.
+
+Neste artigo, estudamos a evolução dos desvios RIR e RIR de equilíbrio, usando tanto um novo modelo keynesiano prototípico quanto um modelo de escala maior. Nossas estimativas apontam para um grau substancial de variação no tempo no RIR de equilíbrio. Além disso, descobrimos que essa taxa às vezes se tornou negativa no período pós-guerra. Em particular, nossa análise sugere que o RIR de equilíbrio caiu acentuadamente abaixo de zero no final de 2008.
+
+Concluímos observando que os modelos que usamos aqui, mesmo os de maior escala, são até certo ponto muito estilizados e apresentam algumas deficiências. Uma dessas deficiências é a ausência de uma estrutura teórica explícita do setor financeiro e das fricções financeiras.
+%
+%
+\section{\citet{Curdia:2015}: Has U.S. monetary policy tracked the efficient interest rate? }
+
+Este artigo propõe uma caracterização alternativa dos fatores que influenciam a evolução da FFR. Sua principal conclusão é que as regras de política em que a taxa de juros é definida para acompanhar uma medida da taxa real eficiente - a taxa de juros real que prevaleceria se a economia fosse perfeitamente competitiva - ajustam os dados melhor do que as regras nas quais o hiato do produto é a medida primária da atividade econômica real. Referimo-nos ao primeiro como regras W, de Wicksell (1898), que, notoriamente, definiu o problema da política monetária como uma tentativa de rastrear uma taxa de juros “neutra”, determinada apenas por fatores reais.
+
+Avaliar até que ponto este tipo de raciocínio teve um impacto mensurável na evolução observada das taxas de política nos EUA requer um modelo estrutural, uma vez que a taxa real de equilíbrio é um objeto contrafactual. Calculamos esse contrafactual em duas variantes do modelo DSGE New Keynesian padrão com concorrência monopolística e preços rígidos, estimados em dados da Taxa de Fundos Federais (FFR), inflação e crescimento do PIB, como na literatura empírica sobre regras de Taylor. Dentro desse quadro, definimos o potencial de produção como o nível eficiente de produção agregada $y_t^{e}$, por exemplo, para que a taxa real de equilíbrio que “manteria a economia em seu potencial de produção” é a taxa eficiente de retorno $r_t^{e}$. Essa taxa de juros é eficiente porque é a que prevaleceria se os mercados fossem perfeitamente competitivos, em vez de distorcidos pelo poder de monopólio e pela dispersão de preços.
+
+Além de apontar as regras W como uma ferramenta promissora para descrever a definição de taxas de juros na prática, nossos resultados também sugerem que esse componente, muitas vezes negligenciado, dos modelos estruturais pode ter um impacto significativo em sua adequação. A diferença nas probabilidades marginais entre as melhores e piores regras de ajuste consideradas neste estudo pode chegar a 50 log-points. Como referência, essas diferenças no ajuste são de uma ordem de magnitude similar àquelas entre modelos estruturais estimados com ou sem volatilidade estocástica. Esta evidência, portanto, ressalta a importância para os pesquisadores do DSGE de prestar muita atenção à especificação da política monetária.
+
+Este artigo propõe uma visão alternativa dos fatores reais que impulsionam as decisões da taxa de juros. Regras nas quais o instrumento de política rastreia a taxa de juros eficiente como a medida principal dos desenvolvimentos econômicos reais se encaixam melhor nos dados do que as especificações equivalentes que respondem ao hiato do produto. Referimo-nos a essa classe de regras como regras W, de Wicksell (1898), cuja taxa de juros neutra é precursora da taxa eficiente de retorno aqui considerada.
+
+Como essa taxa eficiente é um objeto contrafatual - a taxa de retorno que prevaleceria sob competição perfeita -, sua medição requer um modelo estrutural. Portanto, conduzimos nossa investigação empírica dentro de uma estrutura DSGE New Keynesian, usando métodos Bayesianos para estimar seus parâmetros e comparar o ajuste de muitas especificações alternativas. Em todas essas especificações, que diferem para os detalhes da regra de política, bem como para as suposições sobre o comportamento do setor privado, as regras W provaram-se consistentemente superiores às regras de Taylor equivalentes.
+
+Apesar de sua robustez, este resultado está sujeito a duas ressalvas. Em primeiro lugar, a especificação do modelo é importante, pois nosso critério de ajuste depende da interação da regra de política com o restante do modelo. Mais trabalho entre diferentes modelos seria, portanto, desejável, embora já abordemos essa questão ilustrando a robustez dos resultados em duas especificações DSGE populares. Em segundo lugar, a comparação de modelos através de densidades de dados marginais e os fatores de Bayes aplicados aos modelos DSGE está sujeita a algumas armadilhas, destacadas, por exemplo, por Del Negro e Schorfheide (2011). No entanto, as grandes melhorias no ajuste descoberto ao passar das regras W para T sugerem que a especificação da função de reação a políticas faz uma diferença significativa.
+
+IS Curve:
+\begin{equation}
+    \tilde{x}_t = E_t(\tilde{x}_{t+1}) - \varphi_{\gamma}^{-1}(i_t - E_t(\pi_{t+1}) - r_t^{e} )
+\end{equation}
+
+o nível de atividade corrente é $\tilde{x}_t \equiv (x_t^{e} - \eta_{\gamma}x_{t-1}^{e} ) - \beta \eta_{\gamma} E_t(x_{t+1}^{e} - \eta_{\gamma} x_t^{e} ) $ depende da expectativa futura da atividade real e do gap entre a taxa real ex-ante e seu nível eficiente, $x_t^{e} \equiv y_t - y_t^{e} $ é o hiato do produto.
+
+NKPC:
+\begin{equation}
+    \tilde{\pi}_t = \xi(\omega x_t^{e} + \varphi_{\gamma}\tilde{x}_t ) + \beta E_t \tilde{\pi}_{t+1} + \upsilon_t
+\end{equation}
+
+a medida de inflação corrente: $\tilde{\pi}_t = \pi_t - \varsigma \pi_{t-1} $.
+
+No entanto, fornece uma descrição razoável dos dados sobre o PIB, a inflação e a taxa de juros - as séries que são normalmente consideradas na estimativa das regras de taxa de juros. Outra vantagem de trabalhar com uma especificação de linha de base simplificada é que ela permitiu explorar a robustez das principais descobertas do documento em um grande número de regras de taxa de juros, sem ter que se preocupar com restrições computacionais.
+
+Regras de Política Monetária.
+
+Regra W
+\begin{equation}
+    i_t = \rho i_{t-1} + (1 - \rho)(r_t^{e} + \phi_{\pi} \pi) + \epsilon_t^{i}
+\end{equation}
+
+Regra T
+\begin{equation}
+    i_t = \rho i_{t-1} + (1 - \rho)(\phi_{\pi} \pi + \phi_x x_t^{e}) + \epsilon_t^{i}
+\end{equation}
+%
+%
+\section{\citet{Ferrero:2016}: Demographics and real interest rates: Inspecting the mechanism}
+
+As taxas de juros reais estão tendendo para baixo há mais de duas décadas em muitos países. Esses movimentos de baixa frequência sugerem que outras forças além das políticas monetárias acomodativas devem estar em jogo.
+
+As tendências demográficas são uma explicação candidata natural para taxas de juros reais baixas e em declínio. O mundo está passando por uma dramática transição demográfica. Na maioria das economias avançadas, as pessoas tendem a viver mais tempo. No Japão, nos EUA e na Europa Ocidental, a expectativa de vida ao nascer aumentou cerca de 10 anos entre 1960 e 2010, e as novas gerações continuaram a esperar que a longevidade aumentasse. Ao mesmo tempo, apesar da imigração, as taxas de crescimento populacional estão diminuindo a um ritmo acelerado e, em alguns casos (por exemplo, no Japão), tornam-se negativas. A combinação da desaceleração do crescimento populacional e o aumento da longevidade implica um aumento notável na taxa de dependência - ou seja, a razão entre pessoas com 65 anos ou mais e pessoas de 15 a 64 anos. As conseqüências dessa transição demográfica são de grande alcance e têm importantes implicações macroeconômicas.
+
+Neste artigo, enfocamos as conseqüências da transição demográfica para as taxas de juros reais. Ilustramos três canais através dos quais essa transição pode afetar a taxa de juros real de equilíbrio usando um modelo de ciclo de vida tratável. Para uma determinada idade de aposentadoria, um aumento na expectativa de vida aumenta o período de aposentadoria e gera incentivos adicionais para economizar durante todo o ciclo de vida. Este efeito tende a ser mais forte se os agentes acreditarem que os sistemas públicos de previdência não serão capazes de arcar com a carga adicional gerada pelo envelhecimento da população. Portanto, um aumento na longevidade - e suas expectativas - tende a pressionar a taxa de juros real, à medida que os agentes acumulam suas poupanças em antecipação a um período de aposentadoria mais longo.
+
+Uma queda na taxa de crescimento da população produz dois efeitos opostos nas taxas de juros reais. Por um lado, o menor crescimento populacional leva a uma maior relação capital-trabalho, o que deprime o produto marginal do capital. Esse “efeito de oferta” é muito semelhante a uma desaceleração permanente no crescimento da produtividade, reduzindo as taxas de juros reais. Por outro lado, no entanto, o menor crescimento populacional acaba aumentando a taxa de dependência. Como os aposentados têm uma menor propensão marginal a poupar, essa mudança na composição da população é semelhante a um “efeito de demanda” que eleva o consumo agregado e pressiona para cima as taxas de juros reais de equilíbrio.
+
+Calibramos o modelo para capturar características marcantes da transição demográfica em economias desenvolvidas e quantificamos os efeitos dos canais acima mencionados. O efeito geral de uma transição demográfica prototípica é reduzir a taxa de juros de equilíbrio em uma quantidade significativa. Em particular, para nosso “país representativo desenvolvido”, a taxa real anual de equilíbrio cai 1,5 pontos percentuais entre 1990 e 2014. O aumento na expectativa de vida é responsável pela maior parte da queda na taxa de juros real.
+%
+%
+\section{\citet{Carrillo:2018}: What Determines the Neutral Rate of Interest in an
+Emerging Economy? }
+
+A taxa neutra é determinada no mercado interno de fundos para empréstimos, de modo que fatores que afetam esse mercado promovem mudanças na taxa neutra. Podemos classificar esses fatores em estruturais (como crescimento potencial, demografia, desenvolvimento de mercados financeiros etc.) e transitórios (como choques macroeconômicos). Uma vez que esses fatores são exógenos para os bancos centrais, $r^{*}$ não é uma escolha política.
+
+Em contraste, $r^{*}$ é relevante para os bancos centrais porque os ajuda a determinar a postura da política monetária. Apesar de sua importância, a taxa neutra é um indescritível indicador de política monetária porque: (1) não é observável e deve ser inferida usando métodos quantitativos que estão sujeitos a uma incerteza estatística importante; e (2) pode variar devido a mudanças em fatores estruturais e transitórios.
+
+Uma dimensão que não foi totalmente explorada na literatura de taxa neutra é o papel dos fluxos de capital na formação de $r^{*}$. De fato, os fluxos sustentados de capital poderiam ter um efeito duradouro na oferta de fundos para empréstimos de uma EME, afetando sua taxa neutra. Este canal é potencialmente mais importante para os EMEs do que para os EAs, dada a exposição dos primeiros em mercados internacionais. Portanto, em um EME, outros fatores além do crescimento potencial parecem ter uma importância relativamente grande na determinação de $r^{*}$. Neste trabalho, procuramos ilustrar este ponto quantitativamente. Nós nos concentramos no México, um protótipo EME com um importante volume de comércio internacional e um mercado financeiro favorável aos investidores internacionais. O México pode ser visto como um estudo de referência para EMEs, uma vez que as técnicas usadas para essa economia podem servir a outros países semelhantes.
+
+Para atingir uma estimativa robusta de $r^{*}$ de curto prazo, consideramos cinco abordagens diferentes: médias e filtros, uma regra de Taylor simples estimada recursivamente, modelos de estrutura de termo afim, o modelo de Laubach e Williams (2003) adaptado para uma pequena economia aberta, e um BVAR modelo com interceptações variáveis no tempo (ou abreviadamente TVI-BVAR). Algumas dessas estimativas são claramente afetadas por choques de alta frequência, enquanto outras filtram esses choques, mas ainda apresentam os efeitos de fatores transitórios muito persistentes. Portanto, nos referimos a essas estimativas, sem distinção, como medidas de curto ou médio prazo de $r^{*}$. Por outro lado, para calcular o nível de convergência de longo prazo da taxa neutra, estimamos uma regra de Taylor aumentada que inclui um controle para um fator transitório muito persistente, e o modelo RBC de economia aberta, e a expectativa de 10 anos de curto prazo taxa de juros nominal calculada a partir de um modelo afim.
+
+Todas as medidas de médio prazo exibem uma trajetória semelhante: $r^{*}$ tem tendido para baixo, em geral, pelo menos desde 2001. A exceção está no início do GFC, onde $r^{*}$ seguiu um padrão em forma de U, caindo para registrar níveis baixos até 2012, e parcialmente revertendo para tendência desde 2014. Nós afirmamos que fatores transitórios persistentes explicam o padrão em forma de U de $r^{*}$, enquanto sua tendência descendente pode ser atribuída a mudanças nos fatores estruturais.
+
+Sobre os fatores que impulsionam o curto e o médio prazo $r^{*}$, argumentamos que fatores transitórios internos e externos empurraram a taxa neutra para baixo no rescaldo do GFC. Este é o caso porque a estimativa do crescimento potencial parece relativamente estável em comparação com as estimativas de r. A partir da dimensão doméstica, as condições de folga prevalecentes na economia mexicana após o GFC implicaram uma demanda por fundos para empréstimos mais baixos do que o normal, o que deprimiu $r^{*}$. A partir da dimensão externa, encontramos dois importantes fatores transitórios: (1) persistentes condições de folga nos EUA após a crise, e (2) a implementação de políticas monetárias não convencionais (UMPs, em inglês) pelos bancos centrais em alguns EAs.
+
+Sobre os impulsionadores do nível de convergência de longo prazo de $r^{*}$, Argumentamos novamente que fatores estruturais internos e externos respondem pela aparente queda registrada a partir dos anos 2000 até o presente. Do lado doméstico, observamos (1) um crescimento sustentado da poupança nacional como percentagem do PIB, (2) um aumento da proporção da população em idade ativa, (3) uma perspectiva delineadora da taxa de crescimento da mão-de-obra e (4) uma tendência de produtividade plana. Todos os quatro fatores implicam um menor nível de convergência de longo prazo de $r^{*}$. Do lado estrangeiro, a sustentada redução na taxa de juros real de longo prazo global pode ter levado o crédito internacional de longo prazo para o mercado mexicano, reduzindo a taxa de juros real de longo prazo doméstica por meio de condições de não-arbitragem. Este último contribuiu para aumentar a oferta de fundos para empréstimos na economia, pressionando a pressão negativa.
+%
+%
+\section{\citet{Del-Negro:2015}: Inflation in the Great Recession and New Keynesian Models}
+
+Neste artigo, usamos um modelo DSGE padrão, que estava disponível antes da recente crise e que é estimado com dados até 2008, para explicar o comportamento do crescimento do produto, inflação e custos marginais desde a crise. O modelo utilizado é o modelo de Smets e Wouters (2007), baseado em Christiano, Eichenbaum e Evans (2005), estendido para incluir fricções financeiros como em Bernanke, Gertler e Gilchrist (1999), Christiano, Motto e Rostagno (2003), e Christiano, Motto e Rostagno (2014).
+
+Mostramos que, assim que o estresse financeiro salta no outono de 2008, o modelo prevê com sucesso uma forte contração na atividade econômica, juntamente com um declínio relativamente modesto e prolongado da inflação. As mudanças de preço são projetadas para permanecer na vizinhança de 1$\%$. Esse resultado contrasta com a afirmação de Hall (2011), Ball e Mazumder (2011), e outros de que os modelos neo-keynesianos estão fadados a não captar os amplos contornos da Grande Recessão e a quase estabilidade da inflação.
+
+Segundo o NKPC, a inflação é determinada pela soma descontada dos custos marginais esperados no futuro (inflação fundamental). A chave para entender nosso resultado é que a inflação é mais dependente dos custos marginais futuros esperados do que do nível atual de atividade econômica. Embora o PIB e os custos marginais contraíram-se no final de 2008, mostramos que a política monetária tem sido, na verdade, suficientemente estimuladora para assegurar que os custos marginais devam aumentar. Embora - com visão retrospectiva - o modelo DSGE subestime a queda observada nos custos marginais, o condicionamento na queda dos custos marginais leva a uma moderada revisão para baixo da previsão de inflação, mas não a uma previsão de um período prolongado de deflação. Este resultado contrasta fortemente com uma análise baseada em modelos de curva de Phillips backward looking, que de fato prevêem uma forte deflação condicional à folga observada na economia.
+
+A partir de uma perspectiva ex post, decompomos os erros de previsão feitos pelos nossos modelos DSGE em erros devido a choques de markup e a choques não markup. Enquanto os choques não-markup explicam a queda observada nos custos marginais, eles contribuem para uma redução na previsão de inflação de apenas 0,8 ponto percentual, sustentando nosso argumento de que a ausência de deflação após 2008 é amplamente
+consistente com um modelo DSGE que é construído em torno de um NKPC.
+
+Neste artigo, examinamos o comportamento das previsões de inflação geradas a partir de um modelo DSGE padrão de médio porte, ampliado com uma meta de inflação variável no tempo e fricções financeiras. O modelo incorpora uma nova análise keynesiana da Phillips relacionando a inflação atual aos custos marginais reais futuros esperados. este argumento mostrando que esta observação pode ser reconciliada com as previsões de um modelo DSGE padrão. A partir de 2008Q3, nosso modelo DSGE é capaz de prever um declínio acentuado na produção sem prever uma grande queda na inflação. O modelo prevê que os custos marginais voltarão ao estado estacionário após a crise, o que, através da curva de Phillips foward looking, previne um episódio deflacionário prolongado. Enquanto as previsões de custos marginais subjacentes se mostraram excessivamente otimistas ex-post, mostramos que, mesmo levando em conta as realizações ex-post de custos marginais, o modelo não implica deflação. Também documentamos que nosso modelo DSGE gera uma medida plausível da inflação fundamental para a era pós-1964, que explica as flutuações de inflação de baixa a média frequência e acompanha a inflação básica de PCE sem depender de choques de markup.
+%
+%
+\section{\citet{Wynne:2018}: Estimating the natural rate of interest in an open economy }
+Estendemos o modelo de Laubach e Williams (2003) para um cenário de dois países. Motivado por Clarida et al. (2002), ligamos a taxa natural doméstica à taxa de tendência de crescimento tanto no país de origem quanto no país estrangeiro. Depois, implementamos essa estrutura levando os EUA como o país de origem e o Japão como o país estrangeiro. Estimando o modelo usando dados de 1961Q1 a 2014Q3 com métodos bayesianos, obtemos três resultados principais.
+
+Em primeiro lugar, as taxas de crescimento potencial do produto em ambos os países vêm caindo ao longo do tempo, mas com padrões distintos. Essas diferenças distintas nos padrões de crescimento de tendência entre os dois países ajudam a identificar cada uma de suas contribuições para a taxa natural.
+
+Em segundo lugar, as taxas de juros naturais nos EUA e no Japão não são determinadas apenas por sua própria taxa de crescimento tendencial, mas também pela taxa de crescimento tendencial do outro país. Com base em nossas estimativas, o principal impulsionador da taxa natural em cada país é a taxa de crescimento da tendência do país. No entanto, o crescimento tendencial do outro país contribui de fato em maior ou menor medida em momentos diferentes. Por exemplo, o crescimento da tendência do Japão reduz a taxa natural dos EUA fundamentalmente durante os três períodos em que o crescimento da tendência do Japão está em declínio acentuado. Além disso, a recuperação mais recente da economia dos EUA após 2009 também ajuda a elevar a taxa natural do Japão, mesmo quando a sua própria economia ainda está em estagnação.
+
+Por fim, a diferença estimada entre a taxa real de juros real e a taxa natural fornece informações sobre a postura da política monetária nos EUA e no Japão nos últimos anos.
+
+\citet{LW:2003} relação teórica entre a taxa natural de juros e a tendência de crescimento do produto potencial:
+
+\begin{equation}
+    r^{*} = C g_t + z_t
+\end{equation}
+
+A mesma equação para economia aberta:
+\begin{equation}
+    r^{*} = c g_t + c^{*} g_t^{*} + z_t
+\end{equation}
+
+Uma curva IS para o home country e uma para o foreign country
+
+\begin{eqnarray}
+    \tilde{y}_t^{h} = a_{y,1}\tilde{y}_{t-1}^{h} + a_{y,2}\tilde{y}_{t-2}^{h} + \dfrac{a_r^{h}}{2} \sum_{j=1}^{2} (r_{t-j}^{h} - r_{t-j}^{*}^{h}) + \varepsilon_{\tilde{y},t}^{h} \\
+    \tilde{y}_t^{f} = a_{y,1}\tilde{y}_{t-1}^{f} + a_{y,2}\tilde{y}_{t-2}^{f} + \dfrac{a_r^{f}}{2} \sum_{j=1}^{2} (r_{t-j}^{f} - r_{t-j}^{*}^{f}) + \varepsilon_{\tilde{y},t}^{f} \\
+    
+\end{eqnarray}
+
+Phillips curve para cada um
+\begin{eqnarray}
+    \pi_t^{h} = B_{\pi}(L)\pi_{t-1}^{h} + b_y \tilde{y}_{t-1}^{h} + b_i^{h}(\pi_t^{I}^{h} - \pi_t^{h} ) + b_{o}^{h}(\pi_{t-1}^{o}^{h} - \pi_t^{h}) + \varepsilon_{2,t}^{h} \\
+    \pi_t^{f} = B_{\pi}(L)^{f}\pi_{t-1}^{f} + b_y^{f} \tilde{y}_{t-1}^{f} + b_i^{f}(\pi_t^{I}^{f} - \pi_t^{f} ) + b_{o}^{f}(\pi_{t-1}^{o}^{f} - \pi_t^{f}) + \varepsilon_{2,t}^{f}
+    
+\end{eqnarray}
+
+A análise empírica mostra que a taxa natural não está relacionada apenas ao crescimento da tendência no país de origem, mas também ao crescimento da tendência no país estrangeiro. Tanto para os EUA como para o Japão, o padrão básico da taxa natural é determinado principalmente pelo crescimento do produto potencial do seu próprio país, enquanto a taxa de crescimento tendencial do outro país, de fato, atribui substancialmente à taxa natural no país de origem durante vários períodos especiais. Por exemplo, o crescimento tendencial do Japão amplifica o declínio na taxa natural dos EUA em 1969-1975, 1990-1993 e 2006-2009 quando o crescimento da tendência japonesa sofreu quedas acentuadas. Por outro lado, a recente recuperação econômica nos EUA também ajuda a elevar a taxa natural japonesa após 2009.
+%
+%
+\section{\citet{Moreira:2019}: Natural rate of interest estimates for Brazil after adoption of the inflation targeting regime }
+
+O objetivo deste estudo é contribuir para a literatura aplicada ao Brasil, estimando o NRI para o período entre a adoção do regime de metas de inflação (terceiro trimestre de 1999) para o primeiro trimestre de 2018. Isso permite uma visão geral das políticas monetárias durante quase 20 anos, comparando os resultados com os de estudos anteriores. Além disso, o estudo analisa o comportamento do NRI durante a recessão massiva enfrentada pelo Brasil nos últimos anos.
+
+O método de estimação escolhido é o proposto por Holston, Laubach e Williams (2017), que estima o NRI juntamente com o resultado potencial. Na verdade, é uma versão do modelo original de Laubach e Williams (2003), amplamente reconhecida na literatura. Note-se que, por causa da alta inércia inflacionária e do baixo impacto da política monetária sobre a atividade econômica, sua aplicação foi ligeiramente alterada, aproveitando os múltiplos máximos locais na função de verossimilhança. Assim, as estimativas tornaram-se mais estáveis.
+
+Os resultados indicam um NRI com tendência de queda, especialmente durante a crise atual, correspondendo a 1,4$\%$ ao ano. no primeiro trimestre de 2018, o valor mais baixo da amostra estimada. O NRI médio do período foi de 6,4$\%$ ao ano. Além disso, houve três momentos diferentes na condução da política monetária ao longo do período da amostra. No primeiro, de 1999 a meados de 2007, prevaleceram os estímulos contracionistas, em algum tipo de adaptação após a adoção do regime de metas de inflação. O segundo, de 2007 a 2014, passou de uma política relativamente neutra para uma política expansionista forte depois de 2011. O terceiro período, após 2014, caracterizou-se por uma política contracionista mesmo quando o cenário de recessão se desdobrou.
+
+Dois modelos alternativos foram estimados. Embora esses modelos não sejam adequados à política monetária, eles permitiram uma comparação interessante. O primeiro método alternativo foi uma versão do modelo de Basdevant, Björksten e Karagedikli (2004), que estimou o NRI usando componentes financeiros e macroeconômicos. A inovação está permitindo que o prêmio de risco varie ao longo do tempo. As estimativas foram muito próximas das obtidas pelo modelo de Holston, Laubach e Williams (2017), corroborando a queda acentuada do NRI durante a crise de 2014-2016 e identificando posturas de política monetária semelhantes.
+
+O segundo método alternativo estimou o NRI usando fundamentos de longo prazo, similarmente a Goldfajn e Bicalho (2011), mas incluindo variáveis externas. Os resultados no final da amostra não capturaram a redução substancial do NRI durante a recessão, contrastando assim com as estimativas NRI do modelo de Holston, Laubach e Williams (2017). A inclusão de variáveis fiscais neste modelo acabou cancelando o efeito contracionista do menor crescimento do produto potencial no NRI.
+
+Em suma, as estimativas feitas com o modelo de Holston, Laubach e Williams (2017) indicam um viés predominantemente contracionista na política monetária brasileira, corroborado pelos modelos alternativos. Além disso, o NRI teve uma tendência de queda muito clara. Ambos os resultados já foram descritos em publicações brasileiras.
+%
+%
+\section{\citet{Lewis:2017}: Measuring the natural rate of interest alternative specifications }
+
+Estendemos o trabalho de \citet{LW:2003} de duas maneiras, estimamos todos os parâmetros do modelo conjuntamente e exploramos especificações alternativas, ambas as extensões encontram estimativas economicamente significativamente diferentes de $r^*$. Ao incorporar a incerteza de estimar todos os parâmetros conjuntamente em uma única etapa, e sob a especificação do modelo de \citet{HLW:2017}, obtemos uma dinâmica de séries temporais mais ricas de $r^*$. Nossa estimativa mostra quedas mais profundas durante as recessões
+
+Nossa trajetória mediana da taxa natural também mostra uma trajetória diferente desde o final da grande recessão e obtemos um aumento desde o mínimo em 2008.
+
+Exploramos especificações alternativas sem choques permanentes no componente de não crescimento de r e encontramos um nível elevado da estimativa mediana após a grande recessão, 1,5$\%$ maior do que o de \citet{HLW:2017} no terceiro trimestre de 2016. A dinâmica do componente não-crescimento é difícil de estimar, o que espelha os resultados originais de \citet{LW:2003}. Quando este processo é estacionário, estimamos uma maior recuperação da taxa natural desde os baixos da grande recessão, atingindo 1,8$\%$ ao final do terceiro trimestre de 2016. Portanto, inferimos que choques permanentes no componente não-crescimento a taxa natural é necessária para produzir um baixo nível persistente de r após a grande recessão.
+
+Nossa técnica de estimativa emprega métodos Bayesianos para incorporar a incerteza de todos os parâmetros do modelo conjuntamente na estimativa de $r^*$ em priors frouxas. Porque eles empregam método Bayesiano, o artigo não utiliza o métod de 3 passos usado por \citet{LW:2003}, este método foi usado por causa do problema de "pile-up". O método Bayesiano não sofre do problema de "pile-up" e então pode proceder a estimação em um passo somente. 
+
+Cada versão do modelo de espaço de estado é estimado usando um método Bayesiano padrão. Após especificar as priors, constroi-se a verossimilhaça de um filtro Gaussiano linear e usa um método de algoritmo MH para gerar draws da distribuição das posteriores dos parâmetros do modelo.
+%
+%
+\section{\citet{Us:2018}: Measuring the Natural Interest Rate for the Turkish Economy }
+
+No entanto, tentar modelar a taxa de juros natural em uma economia emergente, como a Turquia, onde a inflação não está estável é obviamente um problema. Este problema fica ainda pior, considerando o fato de que a economia turca também é caracterizada por uma produção altamente volátil e dinâmicas macroeconômicas em rápida mutação.
+
+Estimar a taxa de juros natural para a economia turca. A estrutura empírica é baseada em um sistema de equações, que está no espírito de \citet{LW:2003}. No entanto, tendo em vista a natureza altamente volátil da economia turca, este estudo melhora esta metodologia introduzindo parâmetros que variam no tempo no modelo. Como os parâmetros variáveis no tempo e as variáveis de estado são estimados simultaneamente, o modelo apresenta não-linearidade que pode ser manipulada via EKF (Filtro de Kalman Extendido).
+
+Os resultados revelam que as séries estimadas e os parâmetros
+são bastante razoáveis. A taxa de juros natural se move em linha com a taxa de juros real, mas a série também é sensível a grandes choques, que se acredita terem um impacto na taxa de juros natural.
+
+A avaliação do modelo mostra que o valor estimado a taxa de juros real e a inflação são plausíveis à medida que se movem paralelamente aos seus respectivos originais. Além disso, a mesma observação é verdadeira para o produto e também para o produto potencial, que captura os principais pontos de virada do produto real sem seguir uma tendência muito suave. O hiato do produto estimado também é capaz de representar a postura das pressões inflacionárias do lado da demanda na economia.
+
+Deve-se notar que as estimativas são baseadas em dados agregados sobre o produto e a inflação. Claramente, a demanda agregada e a inflação podem ter dinâmicas diferentes por subcategorias. Em particular, o grau de persistência e a sensibilidade da inflação à taxa de câmbio e ao hiato do produto podem mudar se os dados desagregados forem usados para a inflação e a produção. Isso afeta a derivação da série de taxas de juros naturais.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%
+\bibliographystyle{apalike2} %substitui o and por &
+\bibliography{Bibliografia}
+%
+%
+
+\end{document}
