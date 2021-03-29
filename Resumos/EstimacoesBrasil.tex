@@ -1,0 +1,383 @@
+\chapter{Estimações para o Brasil}
+
+
+\section{\citet{Portugal:2009}: The Natural Rate of Interest in Brazil between 1999 and 2005}
+O objetivo do presente estudo é estimar o nível da taxa natural de juros no Brasil. Em primeiro lugar, os filtros estatísticos (filtro HP e filtro Band-Pass) são utilizados para as séries de juros reais ex ante (deflaciona a Selic esperada doze meses a frente de acordo com a expectativa do IPCA, vinda da Focus  e ex post (deflaciona a taxa Selic usando o IPCA, acumulado doze meses). O filtro BP gera resultados mais voláteis do que usando o filtro HP.
+
+Então, uma estimativa de uma regra dinâmica de Taylor é executada. A taxa de juros de equilíbrio será extraída da função de reação usando um modelo dinâmico para o intercepto da regra de Taylor. Esse procedimento permite extrair a taxa de juros real com a qual o Banco Central do Brasil trabalhou implicitamente ao longo do período analisado, na tentativa de atingir suas metas de inflação e ajudar a suavizar os ciclos de negócios de curto prazo.
+
+A estimativa da taxa de juros real consistente com a função de reação foi feita usando o filtro de Kalman:
+\begin{eqnarray}
+    i_t &=& r_{e,t}^{*} + \beta_{1} i_{t-1} + \beta_{2}D_{j,t} + \beta_{3}h_{t-2} + \epsilon_{t,1} \\
+    r_{e,t}^{*} &=& r_{e,t-1}^{*} + \epsilon_{t,2}
+\end{eqnarray}
+
+$r_{e,t}^{*} $ é a taxa real de juros implícita nas decisões feitas pela autoridade monetária; $i_t$ é a taxa Selic nominal e mensal; $i_{t-1}$ taxa nominal mensal Selic defasada um período; $D_{j,t}$ desvio ponderado da expectativa de inflação da meta de inflação.
+
+Equação de medida:
+$$ [i_t] = [ \beta_1  \beta_2  \beta_3  r_{e,t}^{*} ] \left[ \begin{array}{}
+    i_{t-1} \\
+    D_{j,t} \\
+    h_{t-2} \\
+    1
+\end{array} \right] + [\epsilon_{t,1} ]$$
+
+Equação de transição:
+$$ \begin{bmatrix}
+\beta_{1,t} \\ \beta_{2,t} \\ \beta_{3,t} \\ r_{e,t}^{*}
+\end{bmatrix} =\left[\begin{array}{cccc}
+    1 & 0 & 0 & 0  \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \end{array} \right] \left[\begin{array}{}
+        \beta_{1,t-1} \\ \beta_{2,t-1} \\ \beta_{3,t-1} \\ r_{e,t-1}^{*}
+    \end{array}  \right] \left[ \begin{array}{c}
+         0 \\ 0 \\ 0 \\ \epsilon{t,2}
+    \end{array}  \right]$$
+
+Esses resultados mostram que a autoridade monetária brasileira trabalhou explícita ou implicitamente com uma taxa de juros real próxima aos resultados obtidos pelos filtros.
+
+Essas duas estimativas são eventualmente comparadas com a taxa natural de juros obtida a partir de um modelo simplificado de espaço de estados macroeconômicos seguindo \cite{LW:2003}. O modelo é baseado em duas equações macroeconômicas, uma curva de oferta agregada e uma curva de demanda agregada, onde o equilíbrio de mercado permite extrair o comportamento da taxa natural de juros da economia. Há duas suposições básicas sobre o método proposto pelos autores: (i) o hiato do produto converge para zero sempre que a diferença na taxa de juros - diferença entre os juros reais e a taxa natural - for zero; e, (ii) flutuações na inflação convergem para zero se o hiato do produto for zero. Para estimar o modelo, deve-se utilizar as equações de demanda (IS) e de oferta (curva de Phillips) na forma de espaço de estados, pois permite a extração do comportamento de variáveis não observadas.
+
+Curva IS:
+\begin{equation}
+    y_t &=& c + y_t^{*} + A_y(L)h_t + A_R(L)i_{R,t} + \upsilon{1,t}
+\end{equation}
+
+Curva de Phillips
+\begin{equation}
+    \pi_t &=& B_y(L)h_t + B_{\pi}(L)E_{t}(\pi_{t+1}) + B_{\pi} \pi_{t-1} + \upsilon_{2,t}
+\end{equation}
+     
+$y_t^{*}$ é o Produto potencial; $h_t$ hiato do produto; $i_{R,t} $ hiato da taxa de juros (taxa real de juros $r_{e,t}$ menos a taxa natural de juros $r_t^{*}$). As variáveis não observadas são definidads nas equações de estado. A taxa natural de juros:
+
+\begin{equation}
+    r_t^{*} = cg_t + z_t
+\end{equation}
+$g_t$ é a tendência de crescimento da taxa do produto natural (crescimento da produtividade); $z_t$ termo estocástico e segue um random walk AR(d): 
+
+\begin{equation}
+    z_t = D_{z}(L)z_{t-1} + \upsilon_{3,t}
+\end{equation}
+
+O produto potencial depende de componentes não observados que seguem um random walk e as equações de transição:
+\begin{eqnarray}
+    y_t^{*} &=& y_{t-1}^{*} + g_{t-1} + \upsilon_{4,t} \\
+    g_t &=& g_{t-1} + \upsilon_{5,t}
+\end{eqnarray}
+
+Escrevendo na forma de espaço de estado.
+
+Equação de Medida:
+$$ \begin{bmatrix}
+    h_t \\ \pi_t
+\end{bmatrix} = \left[\begin{array}{ccc}
+c & A_1 & A2 \\ 
+B_1 & B_2 & B_3 \end{array} \right] \left[ \begin{array}{cc}
+    1 & h_{t-1}  \\
+    h_{t-1} & E(\pi_{t+1}) \\
+    i_{R,t-1} & \pi_{t-1}
+\end{array} \right] + \left[ \begin{array}{c}
+   \upsilon_{1,t}  &  \upsilon_{2,t}
+\end{array} \right]
+$$
+
+Equação de Transição:
+$$ \begin{bmatrix}
+    z_{1,t} \\ z_{2,t} \\ y_{t}^{*} \\ g_t
+\end{bmatrix} = \left[ \begin{array}{cccc}
+    D_1 & D_2 & 0 & 0  \\
+     0  &  1 & 0 & 0  \\
+     0  &  0 & 1 & 1  \\
+     0  &  0 & 0 & 1  \\
+\end{array} \right] \left[ \begin{array}{c}
+       z_{1,t-1} \\ z_{2,t-1} \\ y_{t-1}^{*} \\ g_{t-1}
+\end{array} \right] + \left[\begin{array}{c}
+     \upsilon_{3,t} & 0 & \upsilon_{4,t} & \upsilon_{5,t}
+\end{array}  \right]
+$$
+
+A solução para este sistema permite determinar o padrão evolutivo das variáveis sobre as quais o comportamento da taxa natural é condicionado. No entanto, Stock e Watson (1998) chamam a atenção para o fato de que as estimativas deste tipo de modelo tendem a produzir resultados enviesados devido à ocorrência de “problema de pile-up”. Para resolver este viés, recomenda-se que um processo de estimativa sequencial, que fornece estimativas consistentes, seja realizado.
+
+A taxa foi muito próxima da obtida em outras estimativas feitas neste estudo, mostrando convergência entre os juros mais utilizados e a taxa natural.
+
+O comportamento de duas estimativas de diferenças nas taxas de juros. No primeiro, o gap resulta da diferença entre os juros reais ex ante e a taxa natural, enquanto no segundo, há uma diferença entre a taxa de juros real implícita na regra de Taylor e a taxa natural. Supostamente, à medida que a autoridade monetária tenta assumir uma postura de política neutra sobre a determinação da taxa de juros de referência, a comparação da taxa natural com essas duas estimativas deve render resultados muito próximos de zero.
+
+A comparação de ambas as estimativas de gap mostra que as decisões de política monetária no regime de metas foram realmente foward-looking, uma vez que o confronto entre os movimentos da taxa real de juros implícita na função reação com taxas de juros reais ex ante revelou resultados semelhantes na maioria das vezes, embora o resultado para a evolução do gap obtido pela regra de Taylor tenha sido menor que o do gap para as taxas de juros reais ex ante.
+
+Para investigar mais sobre esse tópico, é necessário descobrir o nível das taxas naturais de juros para o Brasil, porque somente as decisões de política monetária que resultam no comportamento sistemático de manter a taxa real acima da taxa natural podem ser caracterizadas como conservadoras ou não. Assim, a estimativa do nível de taxas de juros naturais compatíveis com um regime de metas de inflação e com a estrutura de oferta e demanda da economia brasileira é uma maneira de lançar alguma luz sobre o problema.
+
+O presente estudo estimou a taxa de juros natural utilizando, a princípio, um modelo macroeconômico simplificado e comparando sua evolução com as taxas de juros reais e com as taxas reais de juros implícitas nas decisões do Banco Central, baseadas em uma regra dinâmica de Taylor. Os resultados sugerem que o nível da taxa de juros natural brasileira é, na verdade, alto para os padrões internacionais. 
+
+Os resultados obtidos não são consistentes com os argumentos de que a política monetária brasileira tem sido extremamente rígida quanto à determinação da taxa de juros de referência para atingir as metas de inflação predefinidas. A autoridade monetária manteve a taxa de juros real ex ante e a taxa natural implícita da função de reação próxima ou abaixo da taxa natural na maior parte do tempo. Os resultados também indicam que, para que o Brasil reduza consistentemente suas taxas de juros reais, deve haver algumas mudanças nos fatores que afetam a taxa natural, como o aumento da produtividade total dos fatores, mudanças na elasticidade intertemporal do consumo ou na taxa de juros a sensibilidade da inflação às expectativas dos agentes econômicos, em vez de uma política monetária branda.
+%
+%
+\section{\citet{Barbosa:2016}: A Taxa de Juros Natural e a Regra de Taylor no Brasil: 2003–2015 }
+
+Este trabalho estima a taxa de juros natural para a economia brasileira usando a metodologia de uma economia aberta pequena. Numa economia aberta pequena, o modelo do agente representativo não é apropriado por produzir resultados contrafactuais. A taxa natural de uma economia aberta pequena é igual a taxa de juros real internacional. Em países que existe restrições a mobilidade de capital deve-se adicionar os prêmios de risco apropriados.
+
+O hiato da taxa de juros depende da política monetária. A hipótese do mercado
+de crédito segmentado pode explicar este componente. A estimação da taxa de juros natural, com a metodologia deste trabalho, permite uma análise quantitativa dos vários componentes que determinam a taxa de juros natural no Brasil: i) a taxa de juros internacional; ii) o prêmio de risco país; iii) o prêmio de risco do câmbio; e iv) a taxa de retorno real das LFTs.  Ela não depende, portanto, da taxa de poupança doméstica da economia brasileira nem tampouco do déficit público. A sustentabilidade da dívida pública afeta a taxa de juros natural via prêmio de risco país.
+
+Este trabalho teve três objetivos. Em primeiro lugar, estimou-se a taxa de juros natural da economia brasileira, supondo que se trata de uma economia aberta pequena. Em segundo lugar, estimou-se a
+regra de Taylor para o Brasil, considerando o fato de que a taxa de juros natural varia ao longo do tempo, diferentemente das estimativas feitas para outras economias como a americana. A regra de Taylor inclui outras variáveis da economia aberta, como o câmbio real, que possam ter influência na decisão de
+política monetária. Em terceiro lugar, testou-se a hipótese de que teria havido uma mudança no comportamento do Banco Central do Brasil durante o primeiro mandato do governo da Presidente Dilma, ou
+seja, se teria havido mudanças na regra de Taylor brasileira. 
+
+A evidência empírica encontrada por este trabalho sugere que, durante o primeiro governo de
+Dilma Roussef, o Banco Central teve uma postura significativamente mais leniente do que em todo os
+outros anos analisados, o que pode ser entendido como uma das razões de a inflação ter ficado consistentemente acima da meta desde 2011.
+
+Numa economia aberta pequena sem restrições a mobilidade do capital e com ativos substitutos
+perfeitos a taxa de juros real doméstica é igual a taxa de juros internacional. Quando estas hipóteses não forem satisfeitas deve-se incorporar os termos de risco soberano $(\gamma_t)$ e do risco cambial $(\tau_t)$, supondo-se que não haja oportunidades de arbitragem. Portanto, a taxa de juros natural numa economia aberta pequena é dada por:
+\begin{equation}
+    \bar{r}_t = \bar{r}_t^{*} + \gamma_t + \tau_t
+\end{equation}
+
+Após adicionar os três termos, aplica-se um filtro Hodrick-Prescott.Como medida de taxa de juros internacional As escolhas usuais são a taxa de juros efetiva praticada pelo Federal Reserve Bank (Fed) — Fed Funds Effective Rate — descontada a inflação americana e a LIBOR, uma taxa internacional de referência, também descontada a inflação americana.
+
+No tocante à medida de risco soberano, há, novamente, diferentes escolhas possíveis em decorrência de diferentes horizontes de maturidade. No horizonte de um ano, a medida usual é EMBI+ Brazil. Para medir o prêmio cambial, utilizou-se o cupom cambial, que é o prêmio pago ao investidor para assumir o risco de investir na moeda do país escolhido. 
+
+Na economia brasileira existe um título público indexado a taxa de juros SELIC, a Letra Financeira do Tesouro (LFT), que domina as Reservas Bancárias do Banco Central do Brasil, por pagarem juros, terem liquidez imediata e seu preço não ser afetado pela taxa de juros. Estes títulos, por arbitragem, devem render, na média, o mesmo que outro título que tenha a mesma maturidade. Logo, a taxa de juros natural no Brasil deve ter um termo para medir este componente, como indicado por $\lambda$
+\begin{equation}
+    \bar{r}_t = \bar{r}_t^{*} + \gamma_t + \tau_t + \lambda_t
+\end{equation}
+
+A especificação da Regra de Taylor é prospectiva (forward-looking).
+\begin{eqnarray}
+    \hat{i}_t &=& \bar{r}_t + \pi_t + \beta_1 (\pi_{t+n}^{e} - \bar{\pi} ) + \beta_2 y_t + \beta_3 y_{t-1} + \beta_4 (q_t - q_{t-1}) + \beta_5 (\Delta q_t -  \Delta q_{t-1}) \\
+    \Delta i_t &=& \lambda(\hat{i}_t - i_{t-1}) + \rho \Delta i_{t-1}
+\end{eqnarray}
+$q_t$ é a taxa de câmbio. A regra de política monetária indica que a taxa de juros aumenta se a diferença entre a taxa de juros natural nominal e taxa de juros vigente no período anterior aumenta, se as expectativas inflacionárias estiverem acima da meta, se o produto estiver acima do potencial e se ocorrer uma depreciação cambial real entre o período atual e o anterior. Os dados da economia brasileira não mostram uma tendência na taxa de câmbio real indicando, portanto, não existir o efeito Harrod–Balassa–Samuelson, que invalidaria a variação da taxa de câmbio real como variável explicativa da Regra de Taylor.
+%
+%
+\section{\citet{Moreira:2019}: Natural rate of interest estimates for Brazil after adoption of the inflation targeting regime }
+
+O objetivo deste estudo é contribuir para a literatura aplicada ao Brasil, estimando o NRI para o período entre a adoção do regime de metas de inflação (terceiro trimestre de 1999) para o primeiro trimestre de 2018. Isso permite uma visão geral das políticas monetárias durante quase 20 anos, comparando os resultados com os de estudos anteriores. Além disso, o estudo analisa o comportamento do NRI durante a recessão massiva enfrentada pelo Brasil nos últimos anos.
+
+O método de estimação escolhido é o proposto por Holston, Laubach e Williams (2017), que estima o NRI juntamente com o resultado potencial. Na verdade, é uma versão do modelo original de Laubach e Williams (2003), amplamente reconhecida na literatura. Note-se que, por causa da alta inércia inflacionária e do baixo impacto da política monetária sobre a atividade econômica, sua aplicação foi ligeiramente alterada, aproveitando os múltiplos máximos locais na função de verossimilhança. Assim, as estimativas tornaram-se mais estáveis.
+
+Os resultados indicam um NRI com tendência de queda, especialmente durante a crise atual, correspondendo a 1,4$\%$ ao ano. no primeiro trimestre de 2018, o valor mais baixo da amostra estimada. O NRI médio do período foi de 6,4$\%$ ao ano. Além disso, houve três momentos diferentes na condução da política monetária ao longo do período da amostra. No primeiro, de 1999 a meados de 2007, prevaleceram os estímulos contracionistas, em algum tipo de adaptação após a adoção do regime de metas de inflação. O segundo, de 2007 a 2014, passou de uma política relativamente neutra para uma política expansionista forte depois de 2011. O terceiro período, após 2014, caracterizou-se por uma política contracionista mesmo quando o cenário de recessão se desdobrou.
+
+Dois modelos alternativos foram estimados. Embora esses modelos não sejam adequados à política monetária, eles permitiram uma comparação interessante. O primeiro método alternativo foi uma versão do modelo de Basdevant, Björksten e Karagedikli (2004), que estimou o NRI usando componentes financeiros e macroeconômicos. A inovação está permitindo que o prêmio de risco varie ao longo do tempo. As estimativas foram muito próximas das obtidas pelo modelo de Holston, Laubach e Williams (2017), corroborando a queda acentuada do NRI durante a crise de 2014-2016 e identificando posturas de política monetária semelhantes.
+
+O segundo método alternativo estimou o NRI usando fundamentos de longo prazo, similarmente a Goldfajn e Bicalho (2011), mas incluindo variáveis externas. Os resultados no final da amostra não capturaram a redução substancial do NRI durante a recessão, contrastando assim com as estimativas NRI do modelo de Holston, Laubach e Williams (2017). A inclusão de variáveis fiscais neste modelo acabou cancelando o efeito contracionista do menor crescimento do produto potencial no NRI.
+
+Em suma, as estimativas feitas com o modelo de Holston, Laubach e Williams (2017) indicam um viés predominantemente contracionista na política monetária brasileira, corroborado pelos modelos alternativos. Além disso, o NRI teve uma tendência de queda muito clara. Ambos os resultados já foram descritos em publicações brasileiras.
+%
+%
+\section{\citet{Palma:2017}: Time-Varying Neutral Interest Rate in Brazil Further Evidence from a Simple New Keynesian Model}
+DSGE para Brasil, baseado no paper \citet{Bjornland:2011}.
+
+O objetivo principal deste artigo é apresentar um arcabouço simples para derivar as taxas naturais dentro de um cenário de modelo novo keynesiano. O modelo é pequeno, mas incorpora os principais ingredientes da estrutura novo keynesiana, tornando-se um instrumento útil para analisar como as mudanças nas taxas naturais afetam a economia e a política monetária. Apesar da natureza simples do modelo, derivamos estimativas plausíveis de variação de tempo das taxas naturais e as taxas de juros e hiatos do produto correspondentes usando estimativas bayesianas e técnicas de filtro de Kalman nos dados dos EUA.
+
+A teoria nova keynesiana tornou-se a estrutura principal para a análise da política monetária. Essa teoria respeita a proposição de que a política monetária afeta apenas variáveis nominais no longo prazo e que a taxa de inflação no estado estacionário pode ser governada pela política monetária.
+
+Um ponto de referência importante para o formulador de políticas é como a economia teria se desenvolvido se os preços estivessem sem rigidez e, ao contrário, totalmente flexíveis. Nos referimos à taxa de juros e ao nível do produto em um equilíbrio como as taxas naturais das taxas de juros e o nível natural do produto.
+
+A estratégia da política monetária é frequentemente formulada em termos de desvios dessas taxas naturais, ou seja, em termos de hiato da taxa de juros e do hiato do produto, respectivamente. As taxas naturais são indicadores importantes para a definição do instrumento de política e a caracterização de uma postura neutra de política monetária.
+
+Este artigo fornece estimativas da taxa de juros real natural, do hiato do produto e da meta implícita de inflação para a economia dos EUA. A meta de inflação desde 1994 tem sido notavelmente estável em torno de 2$\%$. A taxa de juros real natural, no entanto, tem variado muito.
+
+Ao estimar a curva híbrida New Keynesian Phillips com uma estimativa consistente do modelo do hiato do produto, descobrimos que a estrutura da curva é muito semelhante àquela encontrada pela estimativa da curva de Phillips com a participação do trabalho na renda. Nossos resultados são, portanto, uma contribuição para o debate sobre se é o hiato do produto ou a participação do trabalho na renda, que fornece a melhor representação para o processo de inflação.
+
+Nossa abordagem é, no entanto, uma reserva em relação a uma abordagem DSGE completa, na medida em que não impomos restrições tecnológicas nem modelamos o mercado para fatores de produção. O lado da oferta da economia é governado por processos exógenos. Outra faceta da contribuição deste artigo é a concessão da possibilidade de uma meta de inflação variável no tempo. Uma terceira novidade da nossa abordagem é que ela não exige detrending os dados antes da análise (usando, por exemplo, o filtro HP) ou torna o produto estacionário deflacionando por uma variável de tendência.
+
+O que o modelo deles tem de diferente do Gali (2015).
+
+Consumidor: Hábito externo, com persistência de segunda ordem $H_t = C_{t-1}^{\gamma_1}C_{t-2}^{\gamma_2}$. Isso gera a seguinte IS Curve: $\Delta y_t = \dfrac{\sigma}{\gamma_1(\sigma -1 )}E_t \Delta y_{t+1} - \dfrac{\gamma_2}{\gamma_1}\Delta y_{t-1} - \dfrac{1}{\gamma_1 (\sigma -1)}(i_t - E_t \pi_{t+1} - \rho) + \dfrac{1}{\gamma_1}(\upsilon_t - E_t \upsilon_{t+1}) $. O choque de preferência no consumo: $\upsilon_t = \rho_{\upsilon}\upsilon_{t-1} + \epsilon_t^{\upsilon} $. \\
+
+Oferta Agregada. Curva de Phillips híbrida, que incorpora foward-looking e backward-looking $\pi_t = \mu E_t \pi_{t+1} + (1 - \mu) \sum_{j=1}^{4} \alpha_j \pi_{t-j} + \kappa x_t + \epsilon_t^{\pi} $.Hiato do produto $x_t = y_t - y_t^{n}$. A taxa natural do produto é dado por um processo exógeno: $\Delta y_t^{n} = \upsilon + \omega_t $. Aqui $\omega_t$ é o choque na taxa de crescimento (choque na taxa natural) $\omega_t = \phi \omega_{t-1} + \varrho_t $. O hiato do produto segue o seguinte processo $x_t = x_{t-1} + \Delta y_t - \Delta y_t^{n} $.\\
+
+Política Monetária. Regra de Taylor $i_t = \psi i_{t-1} + (1 - \psi)(i_t^{n} + \theta_{\pi}(\bar{\pi}_t - \pi_t^{T}) + \theta_x x_t ) + \epsilon_t^{i} $, $i_t^{n}$ é a taxa natural nominal de juros, $\bar{\pi}_t = \dfrac{1}{4} \sum_{j=0}^{3} \pi_{t-j}$, a meta de inflação varia ao longo do tempo $\pi_t^{T} = (1 - \rho_{\pi}) \pi^{*} + \rho_{\pi}\pi_{t-1}^{T} + \xi_t$ e $\xi_t $ é um AR(1) choque na meta de inflação $\xi_t = \rho_{\xi}\xi_{t-1} + \epsilon_t^{\xi}$.\\
+
+A taxa natural de juros. Pode ser obtida a partir da IS Curve $\Delta y_t^{n} = \dfrac{\sigma}{\gamma_1(\sigma -1 )}E_t \Delta y_{t+1}^{n} - \dfrac{\gamma_2}{\gamma_1}\Delta y_{t-1}^{n} - \dfrac{1}{\gamma_1 (\sigma -1)}(i_t^{n} - E_t \pi_{t+1} - \rho) + \dfrac{1}{\gamma_1}(\upsilon_t - E_t \upsilon_{t+1}) $. Isolando a taxa natural de juros $i_t^{n} = \delta + E_t \pi_{t+1} + \sigma \Delta E_t y_{t+1}^{n} - \gamma_1 (\sigma -1) \Delta y_t^{n} - \gamma_2(\sigma -1) \Delta y_{t-1}^{n} + (\sigma -1)(\upsilon_t - E_t \upsilon_{t+1}) $. A taxa de juros real natural $ r_t^{n} = i_t^{n} - E_t \pi_{t+1}$. O hiato do produto pode ser obtido subtraindo a IS Curve da IS Curve do produto natural $ x_t = \dfrac{\sigma}{A}E_t x_{t+1} + \dfrac{(\gamma_1 - \gamma_2)(\sigma -1 )}{A}x_{t-1} + \dfrac{\gamma_2(\sigma -1)}{A}x_{t-2} - \dfrac{1}{A}(i_t - i_t^{n}) $.
+%
+%
+\section{\citet{Aurelio:2011}: A Longa Travessia para a Normalidade: Os Juros Reais Brasileiros }
+
+NÃO É LW NEM DSGE. ESTIMA UMAS REGRESSÕES PARA VER OS EFEITOS DE FATORES ESTRUTURAIS SOBRE A NRI.
+
+O juro real depende das condições econômicas como a estabilidade, o risco percebido, a política fiscal (gastos, dívida pública), assim como das distorções ainda existentes da economia brasileira.
+
+Neste artigo, os fatores estruturais e conjunturais que afetaram a taxa de juros de equilíbrio nos últimos anos são avaliados. Inicialmente, estima-se a relação entre a taxa de juros efetiva e alguns fatores estruturais, com o objetivo de testar se
+a tendência de queda observada na série de taxa juros é, na realidade, reflexo da melhora desses fundamentos. Em seguida, a partir de uma curva que relaciona a taxa de juros com os determinantes da atividade (IS), estima-se o comportamento
+da taxa de juro de equilíbrio de curto prazo, incluindo o período recente de recuperação após o choque da crise internacional. As estimativas indicam que a crise realmente reduziu a taxa de juro real de equilíbrio. No entanto, as políticas fiscais e creditícias anticíclicas, e a retomada da economia mundial, elevaram novamente a taxa de juro neutra.
+
+As estimativas deste artigo confirmam que a taxa de juro real de equilíbrio caiu nos últimos anos. Mas o nível estimado continua bastante elevado quando comparado a outras economias emergentes. A redução do diferencial de juros em relação a outras economias exige um ajuste fiscal que controle o crescimento dos
+gastos do governo.
+
+A abordagem de Bernhardsen e Gerdrup (2007), em que há distinção entre a taxa de juro real de equilíbrio de curto e longo
+prazo. A vantagem dessa separação é apenas didática, pois facilita a compreensão dos fatores que afetam a taxa de juro real de equilíbrio em horizontes temporais diferentes.
+
+O juro real de equilíbrio tem a seguinte forma
+funcional:
+
+$$
+\bar{r}_{t}=\beta_{0}+\beta_{1}t+\beta_{2} X_{t}
+$$
+$ X_{t}$ é um vetor de variáveis estruturais e $t$ é uma tendência linear.
+
+Supõe-se que a taxa de juro real efetiva é igual à taxa de
+juro real de equilíbrio mais choques transitório:
+
+$$
+r_{t}=\bar{r}_{t}+\varepsilon_{t}
+$$
+
+O teste da relação entre as variáveis estruturais e a taxa de juros real.
+$$
+r_{t}=\beta_{0}+\beta_{1}t+\beta_{2} X_{t}+\varepsilon_{t}
+$$
+
+O objetivo é estimar a equação de cima e testar se a tendência de queda observada na taxa de juro real nos últimos anos é totalmente explicada por alguns fatores estruturais. As estimativas mostram que o prêmio de risco país, a dívida pública em proporção do PIB e o crédito em proporção do PIB, todos com defasagens, afetam o nível da taxa de juro real.
+
+A taxa de juro real de equilíbrio no Brasil caiu nos últimos anos, mas ainda encontra-se em patamar elevado comparado aos padrões internacionais. A manutenção de uma política fiscal em que os gastos continuam crescendo acima do PIB evita uma queda mais rápida da taxa de juros. Além disso, a política de crédito direcionado e o arcabouço institucional que afeta a poupança e o mercado de crédito de longo prazo contribuem para que o Brasil tenha uma das taxas de juros mais altas do mundo.
+
+A crise internacional pode ter reduzido a taxa de juros de equilíbrio no Brasil. Mas isso pode ter acontecido devido a questões conjunturais e não estruturais. Os fatores estruturais, como prêmio de risco, preferência intertemporal, arcabouço
+institucional, etc, se alteram lentamente ao longo do tempo. Por isso, é relevante a separação entre a taxa de juro real de equilíbrio de longo prazo, aquela determinada por elementos estruturais, e a taxa de juro real de equilíbrio de curto prazo, aquela que é afetada pela taxa de equilíbrio de longo prazo e por fatores conjunturais. 
+
+A queda da atividade econômica global impactou negativamente o
+crescimento no Brasil, permitindo que a taxa de juro real fosse menor sem causar desequilíbrios na economia. No entanto, as estimativas apresentadas mostram que as políticas fiscais e creditícias tornaram-se mais expansionistas durante a crise, e voltaram a pressionar o juro real de equilíbrio de curto prazo entre meados de 2009 e o início de 2010. A retomada do crescimento na economia mundial também reduziu a folga para juros menores no Brasil.
+
+Dadas as elevadas incertezas associadas às medidas das taxas de equilíbrio (de juros ou de desemprego), acreditamos que o melhor que a autoridade monetária pode fazer é conduzir a política monetária de forma pragmática, avaliando continuamente o impacto de suas ações sobre a economia. A subestimação do grau de engano na estimativa da taxa de juro real de equilíbrio pode causar grandes instabilidades macroeconômicas, enquanto que superestimar a incerteza leva a resultados ligeiramente inferiores caso as estimativas sejam realmente precisas.
+%
+%
+\section{\citet{Ribeiro:2013}: Taxa natural de Juros no Brasil}
+Neste artigo, foi estimada a taxa natural de juros para a economia brasileira entre o final de 2001 e segundo trimestre de 2010 com base em dois modelos, sendo o primeiro deles o proposto por \citet{LW:2003} e o segundo proposto por \citet{Renne:2007}, que
+trata de uma versão alterada do primeiro, que segundo os autores perimite uma estimação mais transparente e robusta. Em ambos os modelos, a taxa natural de juros é estimada em conjunto com o produto potencial, através de filtro de Kalman, no formato de um modelo Espaço de Estado. As estimativas provenientes dos dois modelos não apresentam diferenças relevantes, o que gera maior confiabilidade nos resultados obtidos. Para o período de maior interesse deste estudo (pós-2005), dada a existência de outras análises para período anterior, as estimativas mostram que a taxa natural de juros está em queda na economia brasileira desde 2006. A mensuração da taxa natural de juros, adicionalmente, possibilitou que fosse feita uma avaliação sobre a condução da política monetária implementada pelo Banco Central brasileiro nos últimos anos através do conceito de hiato de juros. Em linhas gerais, a análise mostrou um Banco Central mais conservador entre o final de 2001 e 2005, e mais próximo da neutralidade desde então. Esta conclusão difere da apontada por outros estudos, especialmente para o primeiro período.
+
+Eles comparam muito com o artigo \citet{Portugal:2009}.
+
+As estimativas provenientes dos dois modelos não apresentam diferenças relevantes, o que gera maior confiabilidade nos resultados obtidos. As estimativas mostram que a taxa natural
+de juros está em queda na economia brasileira desde 2006. No período também analisado por \citet{Portugal:2009}, esta clara tendência de queda não é observada. Esta se torna
+presente a partir de 2006, período de maior interesse deste estudo (pós-2005).
+
+A queda na taxa natural de juros pelo modelo é explicada principalmente pela evolução da variável gt, o que, de fato, era de se esperar dadas as profundas mudanças estruturais vividas
+pela economia brasileira nos últimos anos.
+
+Adicionalmente, a mensuração da taxa natural de juros possibilitou que fosse feita neste estudo uma avaliação sobre a condução da política monetária implementada pelo Banco Central brasileiro nos últimos anos, através da medida de hiato de juros, ou ainda, a diferença entre a taxa de juro real e a taxa natural. Ainda que haja muita subjetividade em relação a que tipo de medida de hiato de juros utilizar para se avaliar apropriadamente a política monetária, foram calculadas três medidas que em conjunto evidenciam que a condução da política monetária foi mais conservadora entre o final de 2001 e 2005 e mais próxima da neutralidade entre o final de 2005 e 2010. Esta conclusão difere da obtida por \citet{Portugal:2009}, que concluíram que entre 1999 e 2005, a política monetária ficou mais próxima da neutralidade
+com exceções como o período de 2003. Isto evidencia que medidas de hiato distintas podem gerar conclusões diferentes em relação à condução da política monetária implementada pelo Banco Central brasileiro. Assim, tal análise tem que ser feita com cautela, dadas as dúvidas não só em relação a que medida de hiato utilizar como também as próprias incertezas ligadas ao processo de estimação da taxa natural de juros.
+%
+%
+\section{\citet{Candido:2018}: Measuring the neutral real interest rate in Brazil: a semi-structural open economy framework}
+Este artigo aplica um filtro multivariado de Kalman para estimar a taxa de juros real neutra (NRIR) no Brasil, de 2002T1 a 2017T3. Nossa representação em espaço de estado combina modelos macroeconômicos semiestruturais com a abordagem de Filtro Hodrick- Prescott (HP). Este quadro difere da literatura anterior em dois aspectos: (1) em vez de confiar no caso usual de economia fechada, exploramos uma configuração de economia aberta de forma reduzida, onde a abertura faz o NRIR depender do produto potencial mundial e da abertura grau de economia, além do produto potencial doméstico, da taxa de preferência temporal e da aversão relativa ao risco; (2) em vez de impor estruturas de produto potencial que seguem random walk ou têm padrões autoregressivos, nosso conjunto de equações de estado para essa variável depende de uma função de produção. Este trabalho contribui para a literatura de duas maneiras: (1) fornecemos uma ferramenta empírica simples e complementar para avaliar a postura da política monetária em economias abertas que levam em consideração explicitamente a dinâmica do produto externo; (2) uma vantagem empírica de nosso modelo é fornecer uma estimativa condicional de estágio único de quatro variáveis latentes que são muito úteis para análises de política: NRIR, produto potencial, taxa de inflação não acelerada de desemprego e taxa de inflação não acelerada de utilização da capacidade.
+
+Empregamos um Filtro de Kalman multivariado para medir o NRIR no Brasil, de 2002T1 a 2017T3. Comparando com estudos anteriores que seguem esta abordagem, destacamos duas diferenças principais. Primeiramente, construímos nosso modelo sobre um ambiente de economia aberta, onde o NRIR passa a ser relacionado ao produto potencial estrangeiro e ao grau de abertura da economia, além da especificação que surge em uma configuração de economia fechada, onde a variável latente está relacionada ao produto potencial doméstico, a taxa de preferência temporal e a aversão ao risco relativa. Em segundo lugar, em vez de impor ao produto potencial uma lei de movimento que segue caminhadas aleatórias ou tem padrões autorregressivos, nosso conjunto de equações de estado para estimar essa variável latente parte de uma função de produção. Enquanto estudos anteriores geralmente fazem a estimativa conjunta de duas variáveis latentes (NRIR e produto potencial), esta modificação nos permite fazer uma estimativa conjunta e condicional em um único estágio de quatro variáveis econômicas latentes que são muito úteis para a análise econômica: NRIR, potencial saída, NAIRU e NAICU. Nesse cenário, empregando curvas IS e Phillips em formas reduzidas como equações de medida, podemos fornecer uma ferramenta simples e complementar para avaliar a postura da política monetária em economias abertas.
+
+Comparando as variáveis latentes estimadas pelos modelos macroeconômicos de espaço de estados com as que resultam de um filtro HP original, a primeira é mais robusta ao viés das estimativas de tendência normalmente apresentado pelo último método no final e no início das amostras. Além disso, a diferença entre o NRIR estimado pelos modelos em alguns momentos exemplifica o grande erro que podemos incorrer na mensuração desta variável em períodos marcados por maiores variações do produto potencial.
+
+
+$$
+y_{t}=\bar{y}_{t}+\psi\left(e_{t}-\bar{e}_{t}\right)+(1-\psi)\left(c_{t}-\bar{c}_{t}\right)
+$$
+
+$$
+\begin{aligned}
+\bar{e}_{t} &=\bar{e}_{t-1}+\epsilon \bar{e}, t \\
+\bar{c}_{t} &=\bar{c}_{t-1}+\epsilon_{\bar{c}, t} \\
+\bar{y}_{t} &=2 \bar{y}_{t-1}-\bar{y}_{t-2}+\epsilon \bar{y}, t \\
+e_{t} &=\bar{e}_{t}+\epsilon_{e, t} \\
+c_{t} &=\bar{c}_{t}+\epsilon_{c, t}
+\end{aligned}
+$$
+
+$$
+\begin{array}{l}
+\bar{y}_{t}^{*}=2 \bar{y}_{t-1}^{*}-\bar{y}_{t-2}^{*}+\epsilon_{\bar{y}^{*}, t} \\
+y_{t}^{*}=\bar{y}_{t}^{*}+\epsilon_{y^{*}, t}
+\end{array}
+$$
+
+$$
+\pi_{t}^{F}=\beta_{1} E_{t}\left(\pi_{t+1}\right)+\left(1-\beta_{1}\right) \pi_{t-1}+\beta_{2}\left(y_{t-1}-y_{t-1}^{*}\right)+\epsilon_{\pi^{F}, t}
+$$
+
+$$
+y_{t}=\alpha_{1}\left(y_{t-1}-\bar{y}_{t-1}\right)+\alpha_{2}\left(r_{t-1}-\overline{r r}_{t}\right)+\bar{y}_{t}+\epsilon_{y, t}
+$$
+
+$$
+\begin{array}{l}
+\overline{r r}_{t+1}=\delta_{t}+[\phi-\gamma(\phi-1)] \overline{\Delta y}_{t+1}+[\gamma(\phi-1)] \overline{\Delta y}_{t+1}^{*} \\
+\overline{r r}_{t+1}=\delta+[\phi-\gamma(\phi-1)] \overline{\Delta y}_{t+1}+[\gamma(\phi-1)] \overline{\Delta y}_{t+1}^{*}
+\end{array}
+$$
+%
+%
+\section{\citet{Gottlieb:2013}: Estimativas e Determinantes da Taxa de Juros Real Neutra no Brasil}
+
+Usa varias metodologias. \citet{LW:2003}, \citet{Aurelio:2011},uma regra de Taylor a la \citet{Barbosa:2016}. Sempre as estimativas ela faz para economia fechada, depois aberta.
+
+Tentar identificar quanto da queda recente da taxa de juros neutra se deve a fatores estruturais e domésticos e quanto se deve a fatores conjunturais e internacionais. O que se constata é que os fatores conjunturais e internacionais, que durante muito
+tempo tiveram importância para explicar os movimentos da taxa de juros neutra, principalmente durante o período de crise, hoje já têm importância reduzida. Ou seja, boa parte da queda recente da taxa de juros neutra brasileira é fruto das mudanças estruturais e transformações pelas quais a economia brasileira passou.
+
+Ao longo desse trabalho buscamos, a partir de diferentes metodologias, determinar qual é a taxa de juros neutra da economia brasileira, como foi a sua evolução ao longo dos últimos anos e quais os seus principais determinantes. Com base nessas estimativas, pudemos observar uma queda recente na taxa de juros
+neutra que serve como um benchmark para a determinação da taxa selic. Fatores internacionais e/ou conjunturais, como a lenta recuperação da economia mundial, a flexibilização das políticas monetárias mundiais e a adoção de medidas macroprudenciais tiveram impacto nessa trajetória recente de queda. Porém, os fatores estruturais e domésticos também se mostraram muito importantes para explicar os últimos movimentos. A maior prova disso é que a taxa de juros neutra calculada levando em conta os fatores internacionais e conjunturais ficou, em média, apenas 0.7p.p. abaixo daquela encontrada levando em conta os fatores estruturais e domésticos.
+
+Por fim, em posse das estimativas da taxa de juros e desemprego neutra determinamos como foi a postura do banco central brasileiro nos últimos anos e mostramos, com base numa regra de Taylor modificada, que de fato, o BC passou a dar um peso maior para a convergência entre juros reais e juros neutros e entre taxa de desemprego e nairu.
+%
+%
+\section{\citet{Kfoury:2003}: A Taxa de Juros de Equilíbrio: Uma Abordagem Múltipla }
+Econometria bem rudimenta, a base de dados muito curta. Mas trás a tona a discussão de aspectos de economia aberta, como possíveis efeitos do risco país sobre as taxas de juros.
+
+O objetivo desse trabalho é explorar o maior número possível de métodos para estimar a taxa de juros de equilíbrio, visando utilizar toda a informação disponível sobre esse tópico. Os métodos examinados incluem: taxas médias históricas, modelos estruturais, juros de longo prazo da economia, e câmbio. Além disso foi estimado um painel com 13 países emergentes tentando relacionar o risco soberano da dívida com a taxa de juros praticada por estes países. Uma sub-amostra, contendo apenas os países latinoamericanos, é apresentada para se verificar se as altas taxas de juros são um fenômeno regional ou abrange todos os países emergentes.
+
+Este trabalho procurou estimar a taxa de juros de equilíbrio para o Brasil utilizando todos os métodos sugeridos pelo exame da literatura econômica sobre o tema. O objetivo foi de iluminar por diversos ângulos essa questão, permanecendo a possibilidade de aprofundar o estudo usando qualquer um dos métodos apresentados. As taxas de juros de equilíbrio para o Brasil, independentemente do método escolhido, apresentam resultados elevados em relação aos encontrados para o resto do mundo.
+%
+%
+\section{\citet{Borges:2006}: Estimando a Taxa de Juros Natural para o Brasil: Uma Aplicação da Metodologia VAR Estrutural}
+
+VAR estrutural, em que observa inflação IPCA e juros real, que é a Selic menos a expectativa de inflação 12 meses a frente. Achei meio estranho, pois não observa o NRI e sim o juros real. Não entendi como chegar na NRI.
+
+No trabalho que se segue, utilizando-se da metodologia VAR Estrutural, estimamos, para o Brasil, a série mensal da taxa de juros natural, definida como a taxa de juros real, a qual, quando vigente, mantém a taxa de inflação constante no horizonte de atuação da política monetária. Em um regime de metas de inflação o conhecimento do comportamento desta variável permite ao Banco Central determinar a trajetória de seu instrumento de política monetária de modo a cumprir aquela meta, minimizando a volatilidade do nível de produto.
+
+Munidos desta informação, podemos avaliar a hipótese de que a taxa de juros real praticada no País é compatível com o objetivo de manter a taxa de inflação constante. Se isto é verdade, então é de se esperar que a taxa de juros real praticada seja igual à taxa de juros real que mantém a inflação constante (supondo que a taxa natural seja única). Além disto, esta informação serve como um indicador relevante na tarefa de julgar a validade da primeira das hipóteses apontadas acima. Em outras palavras, é possível dizer se é razoável admitir que a política monetária responde a outras variáveis que não a inflação. Ademais, por meio da comparação entre as séries de taxa de juros praticada e da taxa de juros que mantém a inflação constante é possível avaliar quão vigoroso é o
+Banco Central no combate à inflação.
+
+por que o nível de taxa de juros real necessário para controlar a inflação no Brasil (em torno de $10\%$ ao ano, conforme os resultados da estimação
+apresentados acima) é mais elevado do que o necessário em países semelhantes ao Brasil? A relevância desta questão reside no fato de que caso a taxa natural permaneça no nível atual, o País terá sucesso no controle da inflação, mas amargará trajetórias de crescimento muito baixas. 
+%
+%
+\section{\citet{Perrelli:2014}: Time-varying neutral interest rate: The case of Brazil}
+
+Usa modelos de consumo, filtors estatisticos, LW, yield curve, enfim, vários approaches no artigo.
+
+Neste artigo, inferimos alguns fatos estilizados sobre taxas neutras em uma grande amostra de mercados emergentes e identificamos os fatores que podem ter causado seu declínio. Nossa análise tem um foco amplo, mas destacamos os desafios que o Brasil enfrenta, que experimentou uma das maiores quedas da taxa de juros real neutra na última década - por razões internas e externas - mas continua apresentando uma das maiores. taxas de juros entre as economias de mercado emergentes. Em particular, identificamos um intervalo para a taxa neutra do Brasil com base em uma série de modelos estruturais e econométricos. Nossa inovação é contrastar essas abordagens e discutir sua adequação para uma economia em rápida mudança estrutural.
+
+Uma segunda contribuição é avaliar as implicações de estimar incorretamente uma taxa neutra variável no tempo usando um pequeno modelo estrutural com uma regra de instrumento de política monetária simples. Este é um tema que tem atraído pouca atenção na literatura, com grande parte do foco anteriormente voltado para a incerteza quanto ao produto potencial ou taxa natural de desemprego. Reconhecemos que as taxas neutras e o crescimento do produto potencial estão vinculados, mas descobrimos que as prescrições de política são muito diferentes quando enfrentamos a incerteza de qualquer variedade.
+
+Usamos essa suposição para inferir alguns fatos sobre as taxas neutras em mercados emergentes, em termos de como elas podem ter mudado, como elas se movem e quais podem ser os fatores comuns que explicam tal comovimento. 
+
+Nossa primeira observação é que as taxas neutras pareceram diminuir na maioria dos mercados emergentes (doravante “MEs”) entre 2002 e 2011. Isso é sugerido pela queda constante nas taxas de política real de tendência (doravante “taxas de tendência”) obtidas a partir da aplicação de estatísticas filtros.
+
+Depois de chegar perto de 10 por cento durante a crise cambial de 2002-03, o forte histórico de estabilização macroeconômica do Brasil, sustentado por metas de inflação bem-sucedidas e estruturas de política fiscal, certamente desempenhou um papel fundamental para permitir que as taxas de tendência caíssem substancialmente, incluindo a redução soberana prêmios de risco e aumento da poupança interna. Apesar desse declínio considerável, a tendência da taxa real do Brasil continua a ser a mais alta em nossa amostra de EM.
+
+Assumindo uma integração financeira global menos do que perfeita, a tendência das taxas reais nos EMs deve ser determinada, em parte, por fatores domésticos, incluindo poupança e demanda de investimento, bem como o nível da "taxa mundial neutra" que reflete fatores comuns como "excesso" poupança global e políticas monetárias não convencionais nos EUA e na Europa.
+
+Para o período de amostra coberto neste artigo, nossos resultados econométricos sugerem que as taxas de juros reais globais empurraram para baixo a taxa neutra do Brasil, mas os fatores domésticos também foram importantes, particularmente: um aumento na oferta de poupança (refletido em um rápido aprofundamento financeiro); declínio da dívida pública; e menor risco soberano. Ao mesmo tempo, descobrimos que houve uma variação cíclica substancial nas estimativas das taxas de juros de curto prazo de equilíbrio (ou neutras), refletindo fatores como hiatos do produto doméstico e mundial.
+
+A boa notícia é que os altos níveis de incerteza em relação à verdadeira taxa neutra não precisam complicar muito a formulação de políticas. Com base em simulações de pequenos macromodelos calibrados para o Brasil, descobrimos que os custos de estimar incorretamente a taxa neutra, isoladamente, são
+provavelmente será baixo. Isso ocorre porque as regras dos instrumentos de política monetária padrão fornecem um mecanismo de autocorreção que garante que os erros sejam parcialmente corrigidos. A intuição é clara - uma regra de política ativista garantirá que os formuladores de políticas respondam simetricamente aos resultados observáveis, sejam eles devido a choques de produto e inflação ou taxas neutras estimadas incorretamente. Isso garante que as taxas de juros reais reais nunca estejam muito longe da “verdadeira” taxa neutra, minimizando assim a variabilidade do produto e os hiatos da inflação.
+%
+%
+\section{\citet{Trafane:2020}: A General Characterization of the Capital Cost and the Natural Interest Rate: an application for Brazil}
+Esse artigo mostra que é possível obter, sob hipóteses razoavelmente gerais,
+expressões matemáticas para a taxa de juros natural. Dessa forma, essas expressões são consistentes com diversos referenciais teóricos, sendo um bom ponto de partida para a estimação e avaliação dos determinantes dessa taxa de juros de equilíbrio.
+
+Essa metodologia foi aplicada para o caso brasileiro. Os resultados sugerem que
+a taxa natural recuou rapidamente entre 2009 e 2014, passando de $12\%$ a.a. para cerca de $4\%$ a.a., consequência da queda do crescimento potencial ou sustentável da economia. Afinal, menor crescimento deprime a rentabilidade dos investimentos das empresas, fazendo com que elas só invistam a uma taxa de juros mais baixa. Portanto, não fosse esse recuo do crescimento potencial, a taxa básica continuaria sendo alta.
+
+Frente a Chile, Colômbia, México e Peru entre 2005 e 2012, a taxa de juros mais
+alta no Brasil é explicada por três fatores. Em primeiro lugar, os empréstimos do BNDES com taxas de juros abaixo das taxas de mercado. Afinal, se parte dos empréstimos tem juros mais baixos, as taxas de mercado devem ser mais elevadas a fim de que a taxa de juros média seja condizente com o nível de equilíbrio. Em segundo lugar, o baixo nível de poupança no país, que reduz os recursos disponíveis para investimento, tornando-os mais caros. Por fim, o menor poder de mercado das firmas brasileiras, que faz com que elas tenham menor capacidade de obter taxas de juros mais baixas. Dentre esses três fatores, baixa poupança e baixo poder de mercado das firmas são os mais relevantes para explicar o historicamente elevado nível da taxa básica brasileira.
+
+Este artigo mostra, com base em uma caracterização geral do custo de capital em estado estacionário, é possível obter equações de taxas de juros naturais para (i) o caso da taxa de financiamento padrão ou única e (ii) o caso da taxa de financiamento dupla. Essas equações se tornam economicamente interpretáveis quando mais estrutura teórica é adicionada, assumindo, por exemplo, uma função de produção CES e uma regra de fixação de preços. Isso permite o uso das equações não apenas para estimar a taxa de juros natural, mas também para avaliar seus resultados. Como aplicação, estimo a taxa natural brasileira usando a equação da taxa de financiamento dual para uma função de produção Cobb-Douglas e um modelo macroeconômico semi-estrutural
+
+
+%
+%
+%
+
+
+
+

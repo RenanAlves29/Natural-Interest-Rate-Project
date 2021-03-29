@@ -1,0 +1,107 @@
+\documentclass[12pt]{report} 
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc} %reconhece acentuação
+\usepackage[english,brazil]{babel}
+\usepackage[T1]{fontenc}    %acentuacao
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\definecolor{maroon}{RGB}{153, 0, 0}   %cor vermelha nas citacoes
+\usepackage[colorlinks=true, linkcolor= black, citecolor=maroon]{hyperref}
+\usepackage[pdftex]{hyperref}  %para adicionar enderecos de internet
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{float} % Para fixação de tabelas
+\usepackage{graphicx} % para inclusao de imagens
+\usepackage{color,graphicx}
+\usepackage{amsthm, amsmath, authblk  }
+\usepackage{amssymb, bm}
+\usepackage{dsfont, mathtools}
+\usepackage[natbibapa]{apacite} 
+%\usepackage{natbib}
+\usepackage{geometry}
+\geometry{a4paper,
+ left=2.50cm,
+ right=2.50cm,
+ top=2.50cm,
+ bottom=2.50cm}
+ 
+\usepackage{setspace}
+\onehalfspacing
+
+
+\title{Taxa Natural de Juros}
+\author{Renan Alves}
+
+
+
+\begin{document}
+
+\onehalfspacing
+\maketitle
+\tableofcontents
+
+
+%
+%
+
+\input{Modelos_Introducao}
+
+\input{ModelosLW}
+
+\input{Time Series}
+
+\input{ModelosDSGE}
+
+\input{OLG}
+
+\input{EstimacoesBrasil}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\nocite{Linardi:2016}
+\nocite{Silveira:2008}
+\nocite{Palma:2014}
+\nocite{Gali:2005}
+\nocite{Lubik:2007}
+\nocite{Carvalho:2015}
+\nocite{Preston:2010}
+\nocite{Monacelli:2005}
+\nocite{Adolfson:2007}
+\nocite{Adolfson:2008}
+\nocite{Adolfson:2011}
+\nocite{Altig:2011}
+\nocite{Christiano:2011}
+\nocite{Uribe:2003}
+\nocite{Castro:2015}
+\nocite{Smets:2003}
+\nocite{Smets:2007}
+\nocite{Christiano:2005}
+\nocite{Woodford:2003}
+\nocite{Gali:2015}
+\nocite{Uribe:2006}
+\nocite{Calvo:1983}
+\nocite{Erceg:2000}
+\nocitet{SEGURA-UBIERGO:2012}
+\nocite{Bernhardsen:2007}
+\nocite{Brand:2018}
+\nocite{Taylor:1993}
+\nocite{Ninmark:2011}
+
+%
+%
+
+\bibliographystyle{apalike2} %substitui o and por &
+\bibliography{Bibliografia}
+%
+%
+
+\end{document}
